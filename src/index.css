@@ -1,0 +1,113 @@
+@import "~bootstrap/dist/css/bootstrap.css";
+@import url("https://fonts.googleapis.com/css2?family=Red+Hat+Text&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Work+Sans&display=swap");
+@import "~bootstrap/dist/css/bootstrap.css";
+@import url("https://fonts.googleapis.com/css2?family=Work+Sans&display=swap");
+
+body {
+  margin: 0;
+  font-family: "Work Sans", sans-serif !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--BackgroundColor);
+}
+
+:root {
+  --primaryColor: #e05717;
+  --BackgroundColor: #f8f8f7;
+  --darkblueColor: #193389;
+  --inputlabelColor: #000000;
+  --whiteColor: #ffffff;
+  --greencompletedColor: rgba(82, 193, 90, 0.27);
+  --yellowarchivedColor: rgba(255, 239, 182, 0.27);
+  --attachfileColor: #ebefff;
+  --disabledform: #e4e4e4;
+  --snackbarSuccessColor: #37b24d;
+  --acceptedButtonColor: #52c15a;
+  --greenButtonColor: #d0eed2;
+  --tableBackgroundColor: #f1f5fa;
+  --gridButtonwaiting: #ffefb6;
+  --spocemailColor: #4e4e4e;
+  --termsconditionsColor: #3061ff;
+  --cancelButtonColor: #dd4b39;
+  --pinkprioriyColor: rgba(221, 75, 57, 0.38);
+  --requiredfieldColor: #dd4b39;
+  --activeColor: rgba(82, 193, 90, 0.27);
+}
+
+.formInput {
+  --darkblueColor: #193389;
+  --inputlabelColor: #000000;
+  --whiteColor: #ffffff;
+  --greencompletedColor: rgba(82, 193, 90, 0.27);
+  --yellowarchivedColor: rgba(255, 239, 182, 0.27);
+  --attachfileColor: #ebefff;
+  --disabledform: #e4e4e4;
+  --snackbarSuccessColor: #37b24d;
+  --acceptedButtonColor: #52c15a;
+  --greenButtonColor: #d0eed2;
+  --tableBackgroundColor: #f1f5fa;
+  --gridButtonwaiting: #ffefb6;
+  --spocemailColor: #4e4e4e;
+  --termsconditionsColor: #3061ff;
+}
+.font-grey-12-bold {
+  color: var(--inputlabelColor);
+  opacity: 0.7;
+  font-size: 12px;
+  font-weight: bold;
+}
+.font-grey-14-bold {
+  color: var(--inputlabelColor);
+  opacity: 0.7;
+  font-size: 14px;
+  font-weight: bold;
+}
+.formInput {
+  height: 40px;
+  border-radius: 8px;
+  background-color: var(--whiteColor);
+  border: 1px solid var(--disabledform);
+}
+.Button {
+  background-color: var(--darkblueColor);
+  color: white;
+  height: 40px;
+  border-radius: 8px;
+}
+.login__maindiv--small {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.divider {
+  background-image: linear-gradient(to right,
+      rgba(204, 213, 226),
+      rgba(247, 248, 247),
+      rgba(247, 248, 247));
+  height: 0.5px;
+  margin-left: 10px;
+  margin-bottom: 1em;
+  margin-top: -7px;
+}
+.form-control:focus {
+  box-shadow: none;
+}
+.login-input {
+  background-color: #dddddd;
+}
+.back-border-none{
+  border: none;
+  background: none;
+}
+.profile-button{
+  background-color: var(--darkblueColor);
+  color: white;
+  height: 40px;
+  border-radius: 8px;
+  width: 100px;
+  border: none;
+}
+.profile-button:hover{
+  background-color:#435db6
+}
