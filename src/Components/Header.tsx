@@ -6,7 +6,7 @@ import Toolbar from '@mui/material/Toolbar';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { Grid, IconButton, useMediaQuery, useTheme } from '@mui/material';
+import { Grid, IconButton, Typography, useMediaQuery, useTheme } from '@mui/material';
 import { TbLogout } from 'react-icons/tb';
 import { RxAvatar } from 'react-icons/rx';
 
@@ -32,9 +32,12 @@ export default function Header({ handleSideBar }: { handleSideBar: () => void })
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = useState<null | HTMLButtonElement>(null);
   const location = useLocation();
+  const [User, setUser] = useState<UserData | null>(null);
+  console.log(User, "setDatasetDatasetData");
+
   const path = location.pathname.split('/');
   const title = path ? path[path.length - 1] : null;
-  console.log(title,"locationpathname");
+  console.log(title, "locationpathname");
   const navigate = useNavigate();
   const [isScrolled, setIsScrolled] = useState(false);
   const handleMenu = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -44,8 +47,20 @@ export default function Header({ handleSideBar }: { handleSideBar: () => void })
   const handleCloseMenu = () => {
     setAnchorEl(null);
   };
-
+  interface UserData {
+    email:string
+    name: string
+    password:any
+    phone:string
+    role:string
+    _id:any
+  }
   useEffect(() => {
+    const storedData = localStorage.getItem("session");
+    if (storedData) {
+      const data: UserData = JSON.parse(storedData);
+      setUser(data);
+    }
     const handleScroll = () => {
       const position = window.pageYOffset;
       if (position > 0) {
@@ -82,13 +97,13 @@ export default function Header({ handleSideBar }: { handleSideBar: () => void })
             {isMobileScreen ? null : (
               <Grid container>
                 <Grid style={{ color: 'black', paddingRight: '30px' }}>
-                  <RxAvatar color='#000' size={28} /> 
-                  Ajay krishnan
+                  <RxAvatar color='#000' size={28} />
+                  <span style={{paddingLeft:"5px"}}>{User?.name}</span>
                 </Grid>
                 <Grid>
-                  <button onClick={handleMenu}>
+                  <span onClick={handleMenu}>
                     <TbLogout color='#000' size={28} />
-                  </button>
+                  </span>
                 </Grid>
               </Grid>
             )}

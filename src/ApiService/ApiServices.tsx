@@ -1,13 +1,8 @@
-import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
+import axios, { AxiosInstance, AxiosRequestConfig } from "axios";
+
 let appConfig: any;
-export let axiosInstance: AxiosInstance | undefined;
-const configUrl = 'https://localhost:4000';
-
-interface contact{
-  id:string
-  password:string
-}
-
+let axiosInstance: AxiosInstance | undefined;
+const configUrl = 'http://localhost:4000';
 
 export const getAxiosInstance = (data: any) => {
   if (axiosInstance) {
@@ -16,7 +11,7 @@ export const getAxiosInstance = (data: any) => {
 
   appConfig = data[0]?.config;
   axiosInstance = axios.create({
-    baseURL: `${appConfig.apiBaseUrl}`,
+    baseURL: `${configUrl}`,
     timeout: 15000,
   });
 
@@ -25,7 +20,8 @@ export const getAxiosInstance = (data: any) => {
     req.headers.Authorization = `Bearer ${token}`;
     return req;
   });
-  //Response interceptor for API calls
+
+  // Response interceptor for API calls
   axiosInstance?.interceptors.response.use(
     (resp) => {
       return resp;
@@ -49,14 +45,93 @@ export const getAxiosInstance = (data: any) => {
 };
 
 export const getConfig = async () => {
-  const path = 'https://localhost:4000';
+  const path = 'http://localhost:4000';
   const res = await axios.get(`${configUrl}/${path}`);
   return res && res.data ? res.data : null;
 };
 
 // Login method
-export const Login = async (contact:contact) => {
-  const path = `api/id?${contact.id}&password?${contact.password}`;
-  const res = await axios.post(`${configUrl}/${path}`);
-  return res && res.data ? res.data : null;
+export interface signUp {
+  name: string;
+  email: string;
+  phone: string;
+  password: string;
+  role: string;
+}
+
+export const signUp = async (payload: signUp) => {
+  const path = `/register`;
+  if (!axiosInstance) {
+    axiosInstance = axios.create({
+      baseURL: `${configUrl}`,
+    });
+  }
+  else{
+  try {
+    const response = await axiosInstance.request({
+      url: `${path}`,
+      method: 'post',
+      data: payload
+    });
+
+    return response.data;
+  } catch (error) {
+    console.error("Error signing up:", error);
+    throw error; // Re-throw the error to handle it in your component
+  }
+}
+};
+
+export interface login {
+  email: string;
+  password: string;
+}
+export const login = async (payload: login) => {
+  const path = `/login`;
+  if (!axiosInstance) {
+    axiosInstance = axios.create({
+      baseURL: `${configUrl}`,
+    });
+  }
+  else{
+  try {
+    const response = await axiosInstance.request({
+      url: `${path}`,
+      method: 'post',
+      data: payload
+    });
+
+    return response.data;
+  } catch (error) {
+    console.error("Error:", error);
+    throw error;
+  }
+}
+};
+
+export interface loginDetail {
+  accessToken: any;
+  userId: any;
+}
+export const userDetails = async (payload:loginDetail) => {
+  const path = `/view/user`;
+  if (!axiosInstance) {
+    axiosInstance = axios.create({
+      baseURL: `${configUrl}`,
+    });
+  }
+  else{
+  try {
+    const response = await axiosInstance.request({
+      url: `${path}/${payload.userId.userId}`,
+      method: 'get',
+      headers:{access_token:payload.accessToken}
+    });
+
+    return response.data;
+  } catch (error) {
+    console.error("Error:", error);
+    throw error;
+  }
+}
 };

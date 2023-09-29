@@ -1,32 +1,29 @@
-import React, { useState } from "react";
-interface UserInfo {
-  firstName: string;
-  lastName: string;
-  email: string;
-  password: string;
-}
+import React, { useState,useEffect} from "react";
+
 const UserProfile: React.FC = () => {
-  const initialUserInfo: UserInfo = {
-    firstName: "Ajay",
-    lastName: "Krishnan",
-    email: "ajay@gmail.com",
-    password: "12345",
-  };
-  const [userInfo, setUserInfo] = useState<UserInfo>(initialUserInfo);
   const [isEditing, setIsEditing] = useState(false);
+  const [User, setUser] = useState<UserData | null>(null);
+
+  interface UserData {
+    email:string
+    name: string
+    password:any
+    phone:string
+    role:string
+    _id:any
+  }
+  useEffect(() => {
+    const storedData = localStorage.getItem("session");
+    if (storedData) {
+      const data: UserData = JSON.parse(storedData);
+      setUser(data);
+    }
+  }, []);
   const handleEditClick = () => {
     setIsEditing(true);
   };
   const handleCancelClick = () => {
     setIsEditing(false);
-    setUserInfo(initialUserInfo);
-  };
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setUserInfo({
-      ...userInfo,
-      [name]: value,
-    });
   };
   const handleSubmit = () => {
     setIsEditing(false);
@@ -36,31 +33,16 @@ const UserProfile: React.FC = () => {
       <h2>Profile</h2>
       <div className="p-2">
       <div>
-        <label className="font-grey-14-bold mb-1">First Name:</label>
+        <label className="font-grey-14-bold mb-1">Name:</label>
         {isEditing ? (
           <input
             className="form-control login-input w-25"
             type="text"
-            name="firstName"
-            value={userInfo.firstName}
-            onChange={handleInputChange}
+            name="name"
+            value={User?.name}
           />
         ) : (
-          <span>{userInfo.firstName}</span>
-        )}
-      </div>
-      <div>
-        <label className="font-grey-14-bold mb-1">Last Name:</label>
-        {isEditing ? (
-          <input
-            className="form-control login-input w-25"
-            type="text"
-            name="lastName"
-            value={userInfo.lastName}
-            onChange={handleInputChange}
-          />
-        ) : (
-          <span>{userInfo.lastName}</span>
+          <span>{User?.name}</span>
         )}
       </div>
       <div>
@@ -70,25 +52,23 @@ const UserProfile: React.FC = () => {
             className="form-control login-input w-25"
             type="text"
             name="lastName"
-            value={userInfo.email}
-            onChange={handleInputChange}
+            value={User?.email}
           />
         ) : (
-          <span>{userInfo.email}</span>
+          <span>{User?.email}</span>
         )}
       </div>
       <div>
-        <label className="font-grey-14-bold mb-1">Password:</label>
+        <label className="font-grey-14-bold mb-1">Role:</label>
         {isEditing ? (
           <input
             className="form-control login-input w-25"
             type="text"
             name="lastName"
-            value={userInfo.password}
-            onChange={handleInputChange}
+            value={User?.role}
           />
         ) : (
-          <span>{userInfo.password}</span>
+          <span>{User?.role}</span>
         )}
       </div>
       <div>
