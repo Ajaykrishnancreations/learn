@@ -135,3 +135,25 @@ export const userDetails = async (payload:loginDetail) => {
   }
 }
 };
+
+export const getCourse = async () => {
+  const path = `/getcourse`;
+  if (!axiosInstance) {
+    axiosInstance = axios.create({
+      baseURL: `${configUrl}`,
+    });
+  }
+  else{
+  try {
+    const response = await axiosInstance.request({
+      url: `${path}`,
+      method: 'get',
+    });
+
+    return response.data;
+  } catch (error) {
+    console.error("Error:", error);
+    throw error;
+  }
+}
+};
