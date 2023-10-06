@@ -27,7 +27,6 @@ export const getAxiosInstance = (data: any) => {
       return resp;
     },
     async function (error) {
-      console.log("ApiService: Interceptor: ", error);
       if (!error.response?.config && error.response?.status !== 401) {
         return error;
       }
@@ -135,8 +134,10 @@ export const userDetails = async (payload:loginDetail) => {
   }
 }
 };
-
-export const getCourse = async () => {
+interface emailPayload{
+  email:string
+}
+export const getCourse = async (emailPaylod:emailPayload) => {
   const path = `/getcourse`;
   if (!axiosInstance) {
     axiosInstance = axios.create({
@@ -148,8 +149,8 @@ export const getCourse = async () => {
     const response = await axiosInstance.request({
       url: `${path}`,
       method: 'get',
+      data:{emailPaylod}
     });
-
     return response.data;
   } catch (error) {
     console.error("Error:", error);

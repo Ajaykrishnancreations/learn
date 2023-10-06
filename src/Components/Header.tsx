@@ -33,11 +33,8 @@ export default function Header({ handleSideBar }: { handleSideBar: () => void })
   const [anchorEl, setAnchorEl] = useState<null | HTMLButtonElement>(null);
   const location = useLocation();
   const [User, setUser] = useState<UserData | null>(null);
-  console.log(User, "setDatasetDatasetData");
-
   const path = location.pathname.split('/');
   const title = path ? path[path.length - 1] : null;
-  console.log(title, "locationpathname");
   const navigate = useNavigate();
   const [isScrolled, setIsScrolled] = useState(false);
   const handleMenu = (event: React.MouseEvent<HTMLButtonElement>) => {

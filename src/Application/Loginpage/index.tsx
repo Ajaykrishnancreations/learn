@@ -107,8 +107,8 @@ function Login() {
   return (
     <>
       <Grid container>
-      <Grid xs={6}>
-          <img style={{height:"100%"}} src="https://img.freepik.com/free-vector/science-atom-background-vector-gradient-blue-education-remix_53876-114102.jpg?w=826&t=st=1695205952~exp=1695206552~hmac=2d168229f5cf9fa9c4690db2d03d1655e6c859b53165116f0f82768979d5c48f4" alt="Background" />
+        <Grid xs={6}>
+          <img style={{ height: "100%" }} src="https://img.freepik.com/free-vector/science-atom-background-vector-gradient-blue-education-remix_53876-114102.jpg?w=826&t=st=1695205952~exp=1695206552~hmac=2d168229f5cf9fa9c4690db2d03d1655e6c859b53165116f0f82768979d5c48f4" alt="Background" />
         </Grid>
         <Grid xs={6} style={{ backgroundColor: "white", paddingTop: "10%" }}>
           <div className="login__maindiv--small">

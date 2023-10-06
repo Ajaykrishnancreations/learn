@@ -132,8 +132,6 @@ export default function Index({ children }: IProps) {
     setOpen(!open);
   };
   const location123 = window.location.pathname;
-  console.log(location123, 'location123');
-  console.log(typeof (location123), 'location1234');
   const handleMobileDrawer = () => {
     setResponsiveopen(!responsiveOpen);
   };

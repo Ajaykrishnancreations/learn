@@ -24,10 +24,15 @@ const Homepage:FunctionComponent=()=> {
   
   const [Course , setCourse] = useState<Course[]>([]);
   const [User, setUser] = useState<UserData | null>(null);
-  console.log(Course,"Course");
-
+  interface emailPayload{
+    email:any
+  }
   useEffect(() => {
-    getCourse().then((response) => {
+    const Payload: emailPayload = {
+      email: User?.email
+    };
+    getCourse(Payload)
+    .then((response) => {
         setCourse(response)
       })
       .catch((error) => {
