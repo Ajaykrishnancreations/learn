@@ -1,9 +1,10 @@
 import React, { useState,useEffect} from "react";
+import { userUpdate } from "../../ApiService/ApiServices";
 
 const UserProfile: React.FC = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [User, setUser] = useState<UserData | null>(null);
-
+  const [name, setName] = useState<string | undefined>(User?.name);
   interface UserData {
     email:string
     name: string
@@ -25,8 +26,14 @@ const UserProfile: React.FC = () => {
   const handleCancelClick = () => {
     setIsEditing(false);
   };
+  
   const handleSubmit = () => {
-    setIsEditing(false);
+      const Payload:any = {
+        _id:User?._id,
+        name: name,
+      };
+      userUpdate(Payload)
+    // setIsEditing(false);
   };
   return (
     <div className="p-2">
@@ -39,7 +46,8 @@ const UserProfile: React.FC = () => {
             className="form-control login-input w-25"
             type="text"
             name="name"
-            value={User?.name}
+            defaultValue={User?.name}
+            onChange={(e) => setName(e.target.value)}
           />
         ) : (
           <span>{User?.name}</span>
@@ -53,6 +61,7 @@ const UserProfile: React.FC = () => {
             type="text"
             name="lastName"
             value={User?.email}
+            disabled
           />
         ) : (
           <span>{User?.email}</span>
@@ -66,6 +75,7 @@ const UserProfile: React.FC = () => {
             type="text"
             name="lastName"
             value={User?.role}
+            disabled
           />
         ) : (
           <span>{User?.role}</span>

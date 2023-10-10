@@ -76,7 +76,7 @@ export const signUp = async (payload: signUp) => {
     return response.data;
   } catch (error) {
     console.error("Error signing up:", error);
-    throw error; // Re-throw the error to handle it in your component
+    throw error; 
   }
 }
 };
@@ -150,6 +150,82 @@ export const getCourse = async (emailPaylod:emailPayload) => {
       url: `${path}`,
       method: 'get',
       data:{emailPaylod}
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Error:", error);
+    throw error;
+  }
+}
+};
+
+export const getAllStudentInfo = async () => {
+  const path = `/getAllStudentInfo`;
+  if (!axiosInstance) {
+    axiosInstance = axios.create({
+      baseURL: `${configUrl}`,
+    });
+  }
+  else{
+  try {
+    const response = await axiosInstance.request({
+      url: `${path}`,
+      method: 'get',
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Error:", error);
+    throw error;
+  }
+}
+};
+
+export interface post {
+  title:string
+  img:string
+  description:string
+  role:string
+}
+export const postCourse = async (payload: post) => {
+  const path = `/addcourse`;
+  if (!axiosInstance) {
+    axiosInstance = axios.create({
+      baseURL: `${configUrl}`,
+    });
+  }
+  else{
+  try {
+    const response = await axiosInstance.request({
+      url: `${path}`,
+      method: 'post',
+      data: payload
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Error:", error);
+    throw error;
+  }
+}
+};
+
+
+export interface userUpdate {
+  _id:string
+  name:string
+}
+export const userUpdate = async (payload: userUpdate) => {
+  const path = `/updateUser`;
+  if (!axiosInstance) {
+    axiosInstance = axios.create({
+      baseURL: `${configUrl}`,
+    });
+  }
+  else{
+  try {
+    const response = await axiosInstance.request({
+      url: `${path}`,
+      method: 'put',
+      data: payload
     });
     return response.data;
   } catch (error) {
