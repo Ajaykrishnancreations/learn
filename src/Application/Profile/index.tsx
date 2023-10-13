@@ -1,10 +1,11 @@
 import React, { useState,useEffect} from "react";
-import { userUpdate } from "../../ApiService/ApiServices";
+import { userUpdate,getUserInfo } from "../../ApiService/ApiServices";
 
 const UserProfile: React.FC = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [User, setUser] = useState<UserData | null>(null);
   const [name, setName] = useState<string | undefined>(User?.name);
+  const [value,setvalue] =useState<boolean | undefined>()
   interface UserData {
     email:string
     name: string
@@ -17,9 +18,16 @@ const UserProfile: React.FC = () => {
     const storedData = localStorage.getItem("session");
     if (storedData) {
       const data: UserData = JSON.parse(storedData);
-      setUser(data);
+      const Payload:any = {
+        email: data?.email,
+      };
+      getUserInfo(Payload)
+      .then(res=>{
+        setUser(res);
+      })
     }
-  }, []);
+    setvalue(false)
+  }, [value]);
   const handleEditClick = () => {
     setIsEditing(true);
   };
@@ -33,7 +41,8 @@ const UserProfile: React.FC = () => {
         name: name,
       };
       userUpdate(Payload)
-    // setIsEditing(false);
+      setvalue(true)
+      setIsEditing(false);
   };
   return (
     <div className="p-2">

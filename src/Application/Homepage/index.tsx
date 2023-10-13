@@ -71,7 +71,6 @@ const Homepage: FunctionComponent = () => {
   }
 
   const [frontEndStudents, setFrontEndStudents] = useState<UserData[]>([]);
-  console.log(frontEndStudents, "frontEndStudents");
   const [backEndStudents, setBackEndStudents] = useState<UserData[]>([]);
   const [fullStackStudents, setFullStackStudents] = useState<UserData[]>([]);
 

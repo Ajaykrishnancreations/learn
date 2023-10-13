@@ -180,12 +180,34 @@ export const getAllStudentInfo = async () => {
 }
 };
 
+export const getUserInfo = async (Payload:any) => {
+  const path = `/getUserDetais`;
+  if (!axiosInstance) {
+    axiosInstance = axios.create({
+      baseURL: `${configUrl}`,
+    });
+  }
+  else{
+  try {
+    const response = await axiosInstance.request({
+      url: `${path}/${Payload?.email}`,
+      method: 'get',
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Error:", error);
+    throw error;
+  }
+}
+};
+
 export interface post {
   title:string
   img:string
   description:string
   role:string
 }
+
 export const postCourse = async (payload: post) => {
   const path = `/addcourse`;
   if (!axiosInstance) {
@@ -207,7 +229,6 @@ export const postCourse = async (payload: post) => {
   }
 }
 };
-
 
 export interface userUpdate {
   _id:string
