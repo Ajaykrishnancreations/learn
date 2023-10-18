@@ -20,7 +20,7 @@ import { Theme, CSSObject } from '@mui/material/styles';
 import { SideNavConfigs } from '../Helpers/UserDetails';
 import { GrHomeRounded } from 'react-icons/gr';
 import { GrDocumentUser } from "react-icons/gr";
-
+import GroupIcon from '@mui/icons-material/Group';
 const root = document.querySelector(":root");
 const primary = root ? getComputedStyle(root).getPropertyValue("--primaryColor") : '';
 const navbar = "#193389";
@@ -169,6 +169,15 @@ export default function Index({ children }: IProps) {
               <GrDocumentUser size={18} color='#050505' opacity={'75%'} />
             </ListItemIcon>
             {open ? <ListItemText primary={'Profile'} /> : null}
+          </ListItemButton>
+        ) : null
+        }
+        {Profile_Tabs ? (
+          <ListItemButton onClick={() => { handleNavstyle(2); navigate('/Community') }} sx={navStyle('/Community')} >
+            <ListItemIcon>
+              <GroupIcon />
+            </ListItemIcon>
+            {open ? <ListItemText primary={'Community'} /> : null}
           </ListItemButton>
         ) : null
         }

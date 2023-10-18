@@ -3,7 +3,6 @@ import Card from '@mui/material/Card';
 import { useForm, SubmitHandler } from "react-hook-form";
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
-import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
 import Box from '@mui/material/Box';
 import Tab from '@mui/material/Tab';
@@ -11,7 +10,29 @@ import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
 import { getCourse, postCourse, getAllStudentInfo } from "../../ApiService/ApiServices";
+import { FaEdit } from "react-icons/fa";
+import Button from '@mui/material/Button';
+import { styled } from '@mui/material/styles';
+import Dialog from '@mui/material/Dialog';
+import DialogTitle from '@mui/material/DialogTitle';
+import DialogContent from '@mui/material/DialogContent';
+import DialogActions from '@mui/material/DialogActions';
+import IconButton from '@mui/material/IconButton';
+import CloseIcon from '@mui/icons-material/Close';
+import Typography from "@mui/material/Typography";
 
+interface BootstrapDialogProps {
+  theme?: any; // Add the appropriate type for theme
+}
+
+const BootstrapDialog = styled(Dialog)<BootstrapDialogProps>(({ theme }) => ({
+  '& .MuiDialogContent-root': {
+    padding: theme.spacing(2),
+  },
+  '& .MuiDialogActions-root': {
+    padding: theme.spacing(1),
+  },
+}));
 type FormData = {
   img: string;
   title: string;
@@ -131,6 +152,14 @@ const Homepage: FunctionComponent = () => {
       console.error("Error logging in:", error);
     }
   };
+
+  const [open, setOpen] = React.useState(false);
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
   return (
     <div className="p-4">
       {User?.role === "admin" ?
@@ -167,6 +196,7 @@ const Homepage: FunctionComponent = () => {
                     <div className="p-4 col-4" key={course._id}>
                       <Card sx={{ maxWidth: 345 }}>
                         <CardActionArea>
+                          <button className="coures-edit-button" onClick={handleClickOpen}>Edit <FaEdit style={{width:10}}/></button>
                           <CardMedia
                             component="img"
                             height="140"
@@ -186,6 +216,42 @@ const Homepage: FunctionComponent = () => {
                     </div>
                   ))}
                 </div>
+                <div>
+      <BootstrapDialog
+        onClose={handleClose}
+        aria-labelledby="customized-dialog-title"
+        open={open}
+      >
+        <DialogTitle sx={{ m: 0, p: 2 }} id="customized-dialog-title">
+          Modal title
+        </DialogTitle>
+        <IconButton
+          aria-label="close"
+          onClick={handleClose}
+          sx={{
+            position: 'absolute',
+            right: 8,
+            top: 8,
+            color: (theme) => theme.palette.grey[500],
+          }}
+        >
+          <CloseIcon />
+        </IconButton>
+        <DialogContent dividers>
+          <Typography gutterBottom>
+          The HyperText Markup Language or HTML is the standard markup 
+          language for documents designed to be displayed in a web browser. It defines the meaning and structure of web content. 
+          It is often assisted by technologies such as Cascading Style Sheets and scripting languages such as JavaScript.
+          </Typography>
+        </DialogContent>
+        <DialogActions>
+          <Button autoFocus onClick={handleClose}>
+            Save changes
+          </Button>
+        </DialogActions>
+      </BootstrapDialog>
+    </div>
+
               </TabPanel>
               <TabPanel value="2">
                 <div>

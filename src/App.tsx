@@ -5,8 +5,9 @@ import { Themes } from "./Helpers/Theme";
 import Loader from "./Helpers/Loadable";
 import { PageFrame } from "./Helpers/Outlet";
 const Login = React.lazy(() => import("./Application/Loginpage/index"));
-const Home = React.lazy(() => import("./Application/Homepage/index"))
-const UserProfile = React.lazy(() => import ("./Application/Profile/index"))
+const Home = React.lazy(() => import("./Application/Homepage/index"));
+const Community = React.lazy(() => import("./Application/Community/Community"));
+const UserProfile = React.lazy(() => import ("./Application/Profile/index"));
 function App() {
   return (
     <div>
@@ -16,7 +17,8 @@ function App() {
             <Route path="/" element={<Login />} />
             <Route element={<PageFrame />}>
               <Route path="/home" element={<Home />} />
-               <Route path="/Profile" element={<UserProfile />} />
+              <Route path="/Profile" element={<UserProfile />} />
+              <Route path="/Community" element={<Community />} />
             </Route>
           </Routes>
         </Suspense>

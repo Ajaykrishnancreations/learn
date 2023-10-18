@@ -65,20 +65,20 @@ export const signUp = async (payload: signUp) => {
       baseURL: `${configUrl}`,
     });
   }
-  else{
-  try {
-    const response = await axiosInstance.request({
-      url: `${path}`,
-      method: 'post',
-      data: payload
-    });
+  else {
+    try {
+      const response = await axiosInstance.request({
+        url: `${path}`,
+        method: 'post',
+        data: payload
+      });
 
-    return response.data;
-  } catch (error) {
-    console.error("Error signing up:", error);
-    throw error; 
+      return response.data;
+    } catch (error) {
+      console.error("Error signing up:", error);
+      throw error;
+    }
   }
-}
 };
 
 export interface login {
@@ -92,71 +92,71 @@ export const login = async (payload: login) => {
       baseURL: `${configUrl}`,
     });
   }
-  else{
-  try {
-    const response = await axiosInstance.request({
-      url: `${path}`,
-      method: 'post',
-      data: payload
-    });
+  else {
+    try {
+      const response = await axiosInstance.request({
+        url: `${path}`,
+        method: 'post',
+        data: payload
+      });
 
-    return response.data;
-  } catch (error) {
-    console.error("Error:", error);
-    throw error;
+      return response.data;
+    } catch (error) {
+      console.error("Error:", error);
+      throw error;
+    }
   }
-}
 };
 
 export interface loginDetail {
   accessToken: any;
   userId: any;
 }
-export const userDetails = async (payload:loginDetail) => {
+export const userDetails = async (payload: loginDetail) => {
   const path = `/view/user`;
   if (!axiosInstance) {
     axiosInstance = axios.create({
       baseURL: `${configUrl}`,
     });
   }
-  else{
-  try {
-    const response = await axiosInstance.request({
-      url: `${path}/${payload.userId.userId}`,
-      method: 'get',
-      headers:{access_token:payload.accessToken}
-    });
+  else {
+    try {
+      const response = await axiosInstance.request({
+        url: `${path}/${payload.userId.userId}`,
+        method: 'get',
+        headers: { access_token: payload.accessToken }
+      });
 
-    return response.data;
-  } catch (error) {
-    console.error("Error:", error);
-    throw error;
+      return response.data;
+    } catch (error) {
+      console.error("Error:", error);
+      throw error;
+    }
   }
-}
 };
-interface emailPayload{
-  email:string
+interface emailPayload {
+  email: string
 }
-export const getCourse = async (emailPaylod:emailPayload) => {
+export const getCourse = async (emailPaylod: emailPayload) => {
   const path = `/getcourse`;
   if (!axiosInstance) {
     axiosInstance = axios.create({
       baseURL: `${configUrl}`,
     });
   }
-  else{
-  try {
-    const response = await axiosInstance.request({
-      url: `${path}`,
-      method: 'get',
-      data:{emailPaylod}
-    });
-    return response.data;
-  } catch (error) {
-    console.error("Error:", error);
-    throw error;
+  else {
+    try {
+      const response = await axiosInstance.request({
+        url: `${path}`,
+        method: 'get',
+        data: { emailPaylod }
+      });
+      return response.data;
+    } catch (error) {
+      console.error("Error:", error);
+      throw error;
+    }
   }
-}
 };
 
 export const getAllStudentInfo = async () => {
@@ -166,46 +166,46 @@ export const getAllStudentInfo = async () => {
       baseURL: `${configUrl}`,
     });
   }
-  else{
-  try {
-    const response = await axiosInstance.request({
-      url: `${path}`,
-      method: 'get',
-    });
-    return response.data;
-  } catch (error) {
-    console.error("Error:", error);
-    throw error;
+  else {
+    try {
+      const response = await axiosInstance.request({
+        url: `${path}`,
+        method: 'get',
+      });
+      return response.data;
+    } catch (error) {
+      console.error("Error:", error);
+      throw error;
+    }
   }
-}
 };
 
-export const getUserInfo = async (Payload:any) => {
+export const getUserInfo = async (Payload: any) => {
   const path = `/getUserDetais`;
   if (!axiosInstance) {
     axiosInstance = axios.create({
       baseURL: `${configUrl}`,
     });
   }
-  else{
-  try {
-    const response = await axiosInstance.request({
-      url: `${path}/${Payload?.email}`,
-      method: 'get',
-    });
-    return response.data;
-  } catch (error) {
-    console.error("Error:", error);
-    throw error;
+  else {
+    try {
+      const response = await axiosInstance.request({
+        url: `${path}/${Payload?.email}`,
+        method: 'get',
+      });
+      return response.data;
+    } catch (error) {
+      console.error("Error:", error);
+      throw error;
+    }
   }
-}
 };
 
 export interface post {
-  title:string
-  img:string
-  description:string
-  role:string
+  title: string
+  img: string
+  description: string
+  role: string
 }
 
 export const postCourse = async (payload: post) => {
@@ -215,24 +215,24 @@ export const postCourse = async (payload: post) => {
       baseURL: `${configUrl}`,
     });
   }
-  else{
-  try {
-    const response = await axiosInstance.request({
-      url: `${path}`,
-      method: 'post',
-      data: payload
-    });
-    return response.data;
-  } catch (error) {
-    console.error("Error:", error);
-    throw error;
+  else {
+    try {
+      const response = await axiosInstance.request({
+        url: `${path}`,
+        method: 'post',
+        data: payload
+      });
+      return response.data;
+    } catch (error) {
+      console.error("Error:", error);
+      throw error;
+    }
   }
-}
 };
 
 export interface userUpdate {
-  _id:string
-  name:string
+  _id: string
+  name: string
 }
 export const userUpdate = async (payload: userUpdate) => {
   const path = `/updateUser`;
@@ -241,17 +241,66 @@ export const userUpdate = async (payload: userUpdate) => {
       baseURL: `${configUrl}`,
     });
   }
-  else{
-  try {
-    const response = await axiosInstance.request({
-      url: `${path}`,
-      method: 'put',
-      data: payload
-    });
-    return response.data;
-  } catch (error) {
-    console.error("Error:", error);
-    throw error;
+  else {
+    try {
+      const response = await axiosInstance.request({
+        url: `${path}`,
+        method: 'put',
+        data: payload
+      });
+      return response.data;
+    } catch (error) {
+      console.error("Error:", error);
+      throw error;
+    }
   }
+};
+
+export const getPosts = async () => {
+  const path = `/getPosts`;
+  if (!axiosInstance) {
+    axiosInstance = axios.create({
+      baseURL: `${configUrl}`,
+    });
+  }
+  else {
+    try {
+      const response = await axiosInstance.request({
+        url: `${path}`,
+        method: 'get',
+      });
+      return response.data;
+    } catch (error) {
+      console.error("Error:", error);
+      throw error;
+    }
+  }
+};
+
+export interface CommunityPost {
+  name: string
+  img: any
+  description:any
 }
+
+export const addPost = async (payload: CommunityPost) => {
+  const path = `/addNewPost`;
+  if (!axiosInstance) {
+    axiosInstance = axios.create({
+      baseURL: `${configUrl}`,
+    });
+  }
+  else {
+    try {
+      const response = await axiosInstance.request({
+        url: `${path}`,
+        method: 'post',
+        data: payload
+      });
+      return response.data;
+    } catch (error) {
+      console.error("Error:", error);
+      throw error;
+    }
+  }
 };

@@ -5,5 +5,6 @@ export const getUserDetails = (): string | null => {
 
 export const SideNavConfigs = {
   Home: true,
-  Profile:true
+  Profile:true,
+  Community:true
 } as const;
