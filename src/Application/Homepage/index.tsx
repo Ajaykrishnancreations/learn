@@ -80,17 +80,20 @@ const Homepage: FunctionComponent = () => {
     formState: { errors },
   } = useForm<FormData>();
   const [Course, setCourse] = useState<Course[]>([]);
+  const [selectedCourse, setSelectedCourse] = useState<Course | null>(null);
+  const handleEditClick = (course: Course) => {
+    setSelectedCourse(course);
+    handleClickOpen();
+  };
+
   const [User, setUser] = useState<UserData | null>(null);
   const [value, setValue] = React.useState('1');
-
   const handleChange = (event: any, newValue: any) => {
     setValue(newValue);
   };
-
   interface emailPayload {
     email: any
   }
-
   const [frontEndStudents, setFrontEndStudents] = useState<UserData[]>([]);
   const [backEndStudents, setBackEndStudents] = useState<UserData[]>([]);
   const [fullStackStudents, setFullStackStudents] = useState<UserData[]>([]);
@@ -196,7 +199,12 @@ const Homepage: FunctionComponent = () => {
                     <div className="p-4 col-lg-4 md-12 sm-12 mt-2 " key={course._id}>
                       <Card sx={{ maxWidth: 345 }}>
                         <CardActionArea>
-                          <button className="coures-edit-button" onClick={handleClickOpen}>Edit <FaEdit style={{ width: 10 }} /></button>
+                          <button
+                            className="coures-edit-button"
+                            onClick={() => handleEditClick(course)}
+                          >
+                            Edit <FaEdit style={{ width: 10 }} />
+                          </button>
                           <CardMedia
                             component="img"
                             height="140"
@@ -223,7 +231,7 @@ const Homepage: FunctionComponent = () => {
                     open={open}
                   >
                     <DialogTitle sx={{ m: 0, p: 2 }} id="customized-dialog-title">
-                      Modal title
+                      {selectedCourse?.title}
                     </DialogTitle>
                     <IconButton
                       aria-label="close"
@@ -238,11 +246,9 @@ const Homepage: FunctionComponent = () => {
                       <CloseIcon />
                     </IconButton>
                     <DialogContent dividers>
-                      <Typography gutterBottom>
-                        The HyperText Markup Language or HTML is the standard markup
-                        language for documents designed to be displayed in a web browser. It defines the meaning and structure of web content.
-                        It is often assisted by technologies such as Cascading Style Sheets and scripting languages such as JavaScript.
-                      </Typography>
+                      <Typography>Img url : <input className="form-control login-input" type="text" defaultValue={selectedCourse?.img} ></input></Typography>
+                      <Typography>Title : <input className="form-control login-input" type="text" defaultValue={selectedCourse?.title} ></input></Typography>
+                      <Typography>Description : <textarea name="postContent" rows={4} cols={40} className="form-control login-input" defaultValue={selectedCourse?.description} ></textarea></Typography>
                     </DialogContent>
                     <DialogActions>
                       <Button autoFocus onClick={handleClose}>

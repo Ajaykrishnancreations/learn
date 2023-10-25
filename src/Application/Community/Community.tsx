@@ -14,7 +14,7 @@ import Typography from "@mui/material/Typography";
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import CommentIcon from '@mui/icons-material/Comment';
 import ShareIcon from '@mui/icons-material/Share';
-import { getPosts,addPost } from "../../ApiService/ApiServices";
+import { getPosts, addPost } from "../../ApiService/ApiServices";
 
 interface BootstrapDialogProps {
     theme?: any;
@@ -35,23 +35,23 @@ interface UserData {
     password: any
     phone: string
     role: string
-    _id:  string|number
+    _id: string | number
 }
-interface PostData{
-description: string
-img: string
-name: string
-_id: string|number
-}
-interface Data{
+interface PostData {
     description: string
     img: string
     name: string
-    _id: string|number 
+    _id: string | number
+}
+interface Data {
+    description: string
+    img: string
+    name: string
+    _id: string | number
 
 }
 
-interface CommunityPost{
+interface CommunityPost {
     description: string
     img: any
     name: any
@@ -67,15 +67,15 @@ const Community: FunctionComponent = () => {
     };
     const [User, setUser] = useState<UserData | null>(null);
     const [Posts, setPosts] = useState<PostData[]>([]);
-    const [CommunityImg,setCommunityImg]=useState<any>('');
-    const [CommunityText,setCommunityText]=useState<any>('');
-    const [Value,setValue] =useState<number>()
+    const [CommunityImg, setCommunityImg] = useState<any>('');
+    const [CommunityText, setCommunityText] = useState<any>('');
+    const [Value, setValue] = useState<number>()
 
     useEffect(() => {
         getPosts()
-        .then((res)=>{
-            setPosts(res)
-        })
+            .then((res) => {
+                setPosts(res)
+            })
         const storedData = localStorage.getItem("session");
         if (storedData) {
             const data: UserData = JSON.parse(storedData);
@@ -91,7 +91,7 @@ const Community: FunctionComponent = () => {
         setCommunityText(event.target.value);
     };
     const addCommunityPost = () => {
-        const payload:CommunityPost  = {
+        const payload: CommunityPost = {
             description: CommunityText,
             img: CommunityImg,
             name: User?.name
@@ -101,7 +101,7 @@ const Community: FunctionComponent = () => {
                 console.log(res, "CommunityresCommunityres");
             });
         setOpen(false);
-        setValue(1+1)
+        setValue(1 + 1)
     };
 
     return (
@@ -145,7 +145,7 @@ const Community: FunctionComponent = () => {
                                         <input type="text" placeholder="" onChange={handleCommunityImgChange} />
                                     </Typography> */}
                                     <Typography gutterBottom>
-                                        <textarea name="postContent" rows={4} cols={40} onChange={handleCommunityTextChange}/>
+                                        <textarea name="postContent" rows={4} cols={40} onChange={handleCommunityTextChange} />
                                     </Typography>
                                 </DialogContent>
                                 <DialogActions>
@@ -171,35 +171,38 @@ const Community: FunctionComponent = () => {
             </Grid>
             <Grid className="row mt-4">
                 <Grid className="col-9  community-height">
-                    {Posts.map((item: Data) => (
-                        <Grid className="row community mt-3">
-                        <div>
-                            <RxAvatar color='#000' size={50} /><b style={{ fontSize: "14px" }}>{item?.name}</b><br />
-                            <div className="divider mt-2"></div>
-                            <Typography>
-                               {item?.description}
-                            </Typography>
-                            <hr></hr>
-                            <div className="row">
-                                <div className="col-4">
-                                    <center>
-                                        <ThumbUpIcon /> Like
-                                    </center>
+                    {Posts ? (
+                        Posts.map((item: Data) => (
+                            <Grid className="row community mt-3">
+                                <div>
+                                    <RxAvatar color='#000' size={50} /><b style={{ fontSize: "14px" }}>{item?.name}</b><br />
+                                    <div className="divider mt-2"></div>
+                                    <Typography>
+                                        {item?.description}
+                                    </Typography>
+                                    <hr></hr>
+                                    <div className="row">
+                                        <div className="col-4">
+                                            <center>
+                                                <ThumbUpIcon /> Like
+                                            </center>
+                                        </div>
+                                        <div className="col-4">
+                                            <center>
+                                                <CommentIcon /> Comment
+                                            </center>
+                                        </div>
+                                        <div className="col-4">
+                                            <center>
+                                                <ShareIcon /> Share
+                                            </center>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div className="col-4">
-                                    <center>
-                                        <CommentIcon /> Comment
-                                    </center>
-                                </div>
-                                <div className="col-4">
-                                    <center>
-                                        <ShareIcon /> Share
-                                    </center>
-                                </div>
-                            </div>
-                        </div>
-                    </Grid>
-                    ))}
+                            </Grid>))
+                    ) : (
+                        <p>Loading posts...</p>
+                    )}
                 </Grid>
                 <Grid className="col-3">
                     <Grid className="row community">
