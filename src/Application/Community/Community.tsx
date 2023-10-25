@@ -141,9 +141,9 @@ const Community: FunctionComponent = () => {
                                     <CloseIcon />
                                 </IconButton>
                                 <DialogContent dividers>
-                                    <Typography>
+                                    {/* <Typography>
                                         <input type="text" placeholder="" onChange={handleCommunityImgChange} />
-                                    </Typography>
+                                    </Typography> */}
                                     <Typography gutterBottom>
                                         <textarea name="postContent" rows={4} cols={40} onChange={handleCommunityTextChange}/>
                                     </Typography>

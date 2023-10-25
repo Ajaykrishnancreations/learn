@@ -49,12 +49,12 @@ interface Course {
 }
 
 interface student {
-  email:string
-  name:string
-  password:any
-  phone:string
-  role:string
-  _id:any
+  email: string
+  name: string
+  password: any
+  phone: string
+  role: string
+  _id: any
 }
 interface UserData {
   email: string;
@@ -167,15 +167,15 @@ const Homepage: FunctionComponent = () => {
           <div className="admin-dashboard">
             <p className="Category">Category</p>
             <div className="row dashboard">
-              <div className="col-3 admin-dashboard">
+              <div className="col-lg-3 md-12 sm-12 mt-2 admin-dashboard">
                 <b>Front End</b><br />
                 Total Students : {frontEndStudents.length}
               </div>
-              <div className="col-3 admin-dashboard">
+              <div className="col-lg-3 md-12 sm-12 mt-2  admin-dashboard">
                 <b>Back End</b><br />
                 Total Students : {backEndStudents.length}
               </div>
-              <div className="col-3 admin-dashboard">
+              <div className="col-lg-3 md-12 sm-12 mt-2 admin-dashboard">
                 <b>Full-Stack</b><br />
                 Total Students : {fullStackStudents.length}
               </div>
@@ -193,10 +193,10 @@ const Homepage: FunctionComponent = () => {
               <TabPanel value="1">
                 <div className="row">
                   {Course?.map((course: Course) => (
-                    <div className="p-4 col-4" key={course._id}>
+                    <div className="p-4 col-lg-4 md-12 sm-12 mt-2 " key={course._id}>
                       <Card sx={{ maxWidth: 345 }}>
                         <CardActionArea>
-                          <button className="coures-edit-button" onClick={handleClickOpen}>Edit <FaEdit style={{width:10}}/></button>
+                          <button className="coures-edit-button" onClick={handleClickOpen}>Edit <FaEdit style={{ width: 10 }} /></button>
                           <CardMedia
                             component="img"
                             height="140"
@@ -217,40 +217,40 @@ const Homepage: FunctionComponent = () => {
                   ))}
                 </div>
                 <div>
-      <BootstrapDialog
-        onClose={handleClose}
-        aria-labelledby="customized-dialog-title"
-        open={open}
-      >
-        <DialogTitle sx={{ m: 0, p: 2 }} id="customized-dialog-title">
-          Modal title
-        </DialogTitle>
-        <IconButton
-          aria-label="close"
-          onClick={handleClose}
-          sx={{
-            position: 'absolute',
-            right: 8,
-            top: 8,
-            color: (theme) => theme.palette.grey[500],
-          }}
-        >
-          <CloseIcon />
-        </IconButton>
-        <DialogContent dividers>
-          <Typography gutterBottom>
-          The HyperText Markup Language or HTML is the standard markup 
-          language for documents designed to be displayed in a web browser. It defines the meaning and structure of web content. 
-          It is often assisted by technologies such as Cascading Style Sheets and scripting languages such as JavaScript.
-          </Typography>
-        </DialogContent>
-        <DialogActions>
-          <Button autoFocus onClick={handleClose}>
-            Save changes
-          </Button>
-        </DialogActions>
-      </BootstrapDialog>
-    </div>
+                  <BootstrapDialog
+                    onClose={handleClose}
+                    aria-labelledby="customized-dialog-title"
+                    open={open}
+                  >
+                    <DialogTitle sx={{ m: 0, p: 2 }} id="customized-dialog-title">
+                      Modal title
+                    </DialogTitle>
+                    <IconButton
+                      aria-label="close"
+                      onClick={handleClose}
+                      sx={{
+                        position: 'absolute',
+                        right: 8,
+                        top: 8,
+                        color: (theme) => theme.palette.grey[500],
+                      }}
+                    >
+                      <CloseIcon />
+                    </IconButton>
+                    <DialogContent dividers>
+                      <Typography gutterBottom>
+                        The HyperText Markup Language or HTML is the standard markup
+                        language for documents designed to be displayed in a web browser. It defines the meaning and structure of web content.
+                        It is often assisted by technologies such as Cascading Style Sheets and scripting languages such as JavaScript.
+                      </Typography>
+                    </DialogContent>
+                    <DialogActions>
+                      <Button autoFocus onClick={handleClose}>
+                        Save changes
+                      </Button>
+                    </DialogActions>
+                  </BootstrapDialog>
+                </div>
 
               </TabPanel>
               <TabPanel value="2">
@@ -295,65 +295,65 @@ const Homepage: FunctionComponent = () => {
                     <b>Front-End Student list</b><br />
                     {frontEndStudents?.map((student: student) => (
                       <div className="student-list">
-                      <b>Name : </b> {student.name }<br />
-                      <b>Mail id: </b> {student.email}<br />
-                      <b>Mobile : </b> {student.phone}
+                        <b>Name : </b> {student.name}<br />
+                        <b>Mail id: </b> {student.email}<br />
+                        <b>Mobile : </b> {student.phone}
                       </div>
                     ))}
-                </div>
-                <div className="student-list">
-                  <b>Back-End Student list</b><br />
-                  {backEndStudents?.map((student: student) => (
+                  </div>
+                  <div className="student-list">
+                    <b>Back-End Student list</b><br />
+                    {backEndStudents?.map((student: student) => (
                       <div className="student-list">
-                      <b>Name : </b> {student.name }<br />
-                      <b>Mail id: </b> {student.email}<br />
-                      <b>Mobile : </b> {student.phone}
+                        <b>Name : </b> {student.name}<br />
+                        <b>Mail id: </b> {student.email}<br />
+                        <b>Mobile : </b> {student.phone}
                       </div>
                     ))}
-                </div>
-                <div className="student-list">
-                  <b>Full-Stack Student list</b><br />
-                  {fullStackStudents?.map((student: student) => (
+                  </div>
+                  <div className="student-list">
+                    <b>Full-Stack Student list</b><br />
+                    {fullStackStudents?.map((student: student) => (
                       <div className="student-list">
-                      <b>Name : </b> {student.name }<br />
-                      <b>Mail id: </b> {student.email}<br />
-                      <b>Mobile : </b> {student.phone}
+                        <b>Name : </b> {student.name}<br />
+                        <b>Mail id: </b> {student.email}<br />
+                        <b>Mobile : </b> {student.phone}
                       </div>
                     ))}
+                  </div>
                 </div>
-              </div>
-            </TabPanel>
-          </TabContext>
-        </Box>
-    </>
+              </TabPanel>
+            </TabContext>
+          </Box>
+        </>
         :
-<>
-  <h3>Hi {User?.name}, It's a pleasure to have you join our Growing Family of Learners.</h3>
-  <div className="row">
-    {filterCourses(Course, User?.role)?.map((course: Course) => (
-      <div className="p-4 col-4" key={course._id}>
-        <Card sx={{ maxWidth: 345 }}>
-          <CardActionArea>
-            <CardMedia
-              component="img"
-              height="140"
-              image={course.img}
-              alt={course.title}
-            />
-            <CardContent>
-              <Typography gutterBottom variant="h5" component="div">
-                {course.title}
-              </Typography>
-              <Typography variant="body2" color="text.secondary">
-                {course.description}
-              </Typography>
-            </CardContent>
-          </CardActionArea>
-        </Card>
-      </div>
-    ))}
-  </div>
-</>
+        <>
+          <h3>Hi {User?.name}, It's a pleasure to have you join our Growing Family of Learners.</h3>
+          <div className="row">
+            {filterCourses(Course, User?.role)?.map((course: Course) => (
+              <div className="p-4 p-4 col-lg-4 md-12 sm-12 mt-2 " key={course._id}>
+                <Card sx={{ maxWidth: 345 }}>
+                  <CardActionArea>
+                    <CardMedia
+                      component="img"
+                      height="140"
+                      image={course.img}
+                      alt={course.title}
+                    />
+                    <CardContent>
+                      <Typography gutterBottom variant="h5" component="div">
+                        {course.title}
+                      </Typography>
+                      <Typography variant="body2" color="text.secondary">
+                        {course.description}
+                      </Typography>
+                    </CardContent>
+                  </CardActionArea>
+                </Card>
+              </div>
+            ))}
+          </div>
+        </>
       }
     </div >
   );
