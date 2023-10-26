@@ -107,7 +107,7 @@ const Community: FunctionComponent = () => {
     return (
         <div style={{ padding: "5px 25px 5px 25px" }}>
             <Grid className="row">
-                <Grid className="col-9">
+                <Grid className="col-12 col-md-9">
                     <Grid className="row community">
                         <Grid className="col">
                             <div className="row" style={{ backgroundColor: "#ededed", padding: 13, borderRadius: 5 }}>
@@ -157,7 +157,7 @@ const Community: FunctionComponent = () => {
                         </div>
                     </Grid>
                 </Grid>
-                <Grid className="col-3">
+                <Grid className="d-none d-md-block d-lg-block col-3">
                     <Grid className="row community">
                         <Grid className="col-3">
                             <RxAvatar color='#000' size={50} />
@@ -170,7 +170,7 @@ const Community: FunctionComponent = () => {
                 </Grid>
             </Grid>
             <Grid className="row mt-4">
-                <Grid className="col-9  community-height">
+                <Grid className="col-xs-12 col-sm-12 col-md-9 col-lg-9  community-height">
                     {Posts ? (
                         Posts.map((item: Data) => (
                             <Grid className="row community mt-3">
@@ -204,7 +204,7 @@ const Community: FunctionComponent = () => {
                         <p>Loading posts...</p>
                     )}
                 </Grid>
-                <Grid className="col-3">
+                <Grid className="d-none d-md-block d-lg-block col-3">
                     <Grid className="row community">
                         <div>
                             <Typography style={{ fontWeight: 600 }}>News</Typography>
