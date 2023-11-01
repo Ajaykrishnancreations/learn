@@ -1,33 +1,34 @@
-import axios, { AxiosInstance, AxiosRequestConfig } from "axios";
+import { Alert } from "@mui/material";
+import axios, { AxiosRequestConfig } from "axios";
 
 let appConfig: any;
-let axiosInstance: AxiosInstance | undefined;
 const configUrl = 'http://localhost:4000';
 
-export const getAxiosInstance = (data: any) => {
-  if (axiosInstance) {
-    return axiosInstance;
-  }
-
-  appConfig = data[0]?.config;
-  axiosInstance = axios.create({
-    baseURL: `${configUrl}`,
-    timeout: 15000,
-  });
-
-  axiosInstance?.interceptors.request.use((req) => {
-    const token = localStorage.getItem("Access_Token");
+export const getAxiosInstance = () => {
+  axios?.interceptors.request.use((req) => {
+    const token = localStorage.getItem("accessToken");
     req.headers.Authorization = `Bearer ${token}`;
     return req;
   });
 
   // Response interceptor for API calls
-  axiosInstance?.interceptors.response.use(
+  axios?.interceptors.response.use(
     (resp) => {
       return resp;
     },
     async function (error) {
-      if (!error.response?.config && error.response?.status !== 401) {
+      const refreshTokens = {
+        refreshToken:localStorage.getItem("refreshToken")
+      };
+      if(error.response?.status === 401)
+      {
+        refreshToken(refreshTokens)
+      }
+      if(error.response?.status === 500)
+      {
+        // alert("Please logout and login again");
+      }
+      if (!error.response?.config) {
         return error;
       }
       var config: AxiosRequestConfig = {
@@ -35,7 +36,7 @@ export const getAxiosInstance = (data: any) => {
         baseURL: `${appConfig.tokenUrl}`,
       };
       return axios(config).then(function (response) {
-        localStorage.setItem("Access_Token", response.data.access_token);
+        localStorage.setItem("accessToken", response.data.access_token);
         error.response.config.headers["Authorization"] = `Bearer ${response.data.access_token}`;
         return axios(error.response.config);
       });
@@ -227,5 +228,46 @@ export const addPost = async (payload: CommunityPost) => {
     } catch (error) {
       console.error("Error:", error);
       throw error;
+    }
+};
+
+export interface courseUpdate {
+  _id: any
+title: string|number
+img:any
+description:string|number
+role:any
+}
+export const courseUpdates = async (payload: courseUpdate) => {
+  const path = `/courseUpdate`;
+    try {
+      const response = await axios.request({
+        url: `${configUrl}${path}`,
+        method: 'put',
+        data: payload
+      });
+      return response.data;
+    } catch (error) {
+      console.error("Error:", error);
+      throw error;
+    }
+};
+
+export const refreshToken = async (payload: any) => {
+  console.log(payload,"payloadpayload");
+  const path = `/RefreshToken`;
+    try {
+      const response = await axios.request({
+        url: `${configUrl}${path}`,
+        method: 'post',
+        data: payload
+      });
+      localStorage.setItem('accessToken',response?.data?.accessToken);
+      localStorage.setItem('refreshToken',response?.data?.refreshToken);
+      return response.data;
+    } catch (error) {
+      console.error("Error:", error);
+      throw error;
+
     }
 };

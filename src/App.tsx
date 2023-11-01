@@ -4,11 +4,14 @@ import "./index.css";
 import { Themes } from "./Helpers/Theme";
 import Loader from "./Helpers/Loadable";
 import { PageFrame } from "./Helpers/Outlet";
+import { getAxiosInstance } from "./ApiService/ApiServices";
 const Login = React.lazy(() => import("./Application/Loginpage/index"));
 const Home = React.lazy(() => import("./Application/Homepage/index"));
 const Community = React.lazy(() => import("./Application/Community/Community"));
 const UserProfile = React.lazy(() => import ("./Application/Profile/index"));
+const Video = React.lazy(() => import ("./Application/Video/video"));
 function App() {
+  getAxiosInstance()
   return (
     <div>
       <Themes>
@@ -19,6 +22,7 @@ function App() {
               <Route path="/home" element={<Home />} />
               <Route path="/Profile" element={<UserProfile />} />
               <Route path="/Community" element={<Community />} />
+              <Route path="/Course" element={<Video />} />
             </Route>
           </Routes>
         </Suspense>

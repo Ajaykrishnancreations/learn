@@ -9,7 +9,7 @@ import Tab from '@mui/material/Tab';
 import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
-import { getCourse, postCourse, getAllStudentInfo } from "../../ApiService/ApiServices";
+import { getCourse, postCourse, getAllStudentInfo,courseUpdates} from "../../ApiService/ApiServices";
 import { FaEdit } from "react-icons/fa";
 import Button from '@mui/material/Button';
 import { styled } from '@mui/material/styles';
@@ -61,6 +61,15 @@ type FormData = {
     description: string;
     role: string;
 };
+
+interface courseUpdate{
+  _id: any
+  title: string|number
+  img:any
+  description:string|number
+  role:any
+}
+
 const AdminHomepage: FunctionComponent = () => {
     const {
         register,
@@ -75,6 +84,10 @@ const AdminHomepage: FunctionComponent = () => {
     const [selectedCourse, setSelectedCourse] = useState<Course | null>(null);
     const [open, setOpen] = React.useState(false);
     const [User, setUser] = useState<UserData | null>(null);
+    const [UpdateImg,setUpdateImg] =useState("");
+    const [UpdateTitle,setUpdateTitle] =useState("");
+    const [UpdateDescription,setUpdateDescription] =useState("");
+  const [values,setvalues] =useState<boolean | undefined>()
     const handleChange = (event: any, newValue: any) => {
         setValue(newValue);
     };
@@ -148,7 +161,22 @@ const AdminHomepage: FunctionComponent = () => {
             const data: UserData = JSON.parse(storedData);
             setUser(data);
         }
-    }, []);
+
+    setvalues(false)
+    }, [values]);
+      
+  const handleSubmit1 = () => {
+    const Payload:courseUpdate = {
+      _id:selectedCourse?._id,
+  title: UpdateTitle,
+  img:UpdateImg,
+  description:UpdateDescription,
+  role:selectedCourse?.role
+    };
+    courseUpdates(Payload)
+    handleClose();
+    setvalues(true)
+};
     return (
         <>
             <>
@@ -231,12 +259,12 @@ const AdminHomepage: FunctionComponent = () => {
                                         <CloseIcon />
                                     </IconButton>
                                     <DialogContent dividers>
-                                        <Typography>Img url : <input className="form-control login-input" type="text" defaultValue={selectedCourse?.img} ></input></Typography>
-                                        <Typography>Title : <input className="form-control login-input" type="text" defaultValue={selectedCourse?.title} ></input></Typography>
-                                        <Typography>Description : <textarea name="postContent" rows={4} cols={40} className="form-control login-input" defaultValue={selectedCourse?.description} ></textarea></Typography>
+                                        <Typography>Img url : <input className="form-control login-input" type="text" defaultValue={selectedCourse?.img} onChange={(e) =>setUpdateImg(e.target.value)}></input></Typography>
+                                        <Typography>Title : <input className="form-control login-input" type="text" defaultValue={selectedCourse?.title} onChange={(e) =>setUpdateTitle(e.target.value)}></input></Typography>
+                                        <Typography>Description : <textarea name="postContent" rows={4} cols={40} className="form-control login-input"  onChange={(e) =>setUpdateDescription(e.target.value)} defaultValue={selectedCourse?.description} ></textarea></Typography>
                                     </DialogContent>
                                     <DialogActions>
-                                        <Button autoFocus onClick={handleClose}>
+                                        <Button onClick={handleSubmit1}>
                                             Save changes
                                         </Button>
                                     </DialogActions>

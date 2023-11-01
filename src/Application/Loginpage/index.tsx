@@ -61,6 +61,8 @@ function Login() {
 
           if (userDetailsResponse?.message !== "Authentication failed") {
             localStorage.setItem('session', JSON.stringify(userDetailsResponse));
+            localStorage.setItem('accessToken',loginResponse?.accessToken);
+            localStorage.setItem('refreshToken',loginResponse?.refreshToken);
             navigate("/home");
           } else {
             alert("Authentication failed during user details.");
@@ -92,6 +94,8 @@ function Login() {
         const userDetailsResponse = await userDetails(userDetailsPayload);
         if (userDetailsResponse?.message !== "Authentication failed") {
           localStorage.setItem('session', JSON.stringify(userDetailsResponse));
+          localStorage.setItem('accessToken',loginResponse?.accessToken);
+          localStorage.setItem('refreshToken',loginResponse?.refreshToken);
           navigate("/home");
         } else {
           alert("Authentication failed during user details.");

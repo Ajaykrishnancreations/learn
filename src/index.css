@@ -150,3 +150,14 @@ body {
   overflow: scroll;
   height: 70vh;
 }
+.video-js .vjs-play-control,
+.video-js .vjs-volume-panel .vjs-volume-level {
+  color: rgb(255, 214, 65);
+}
+.video-js {
+  border-radius: 10px;
+  margin: 10px;
+}
+.vjs-has-started .vjs-control-bar {
+  border-radius: 0px 0px 10px 10px;
+}
