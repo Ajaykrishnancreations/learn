@@ -1,28 +1,28 @@
-import React from "react";
-import VideoPlayer from "react-video-js-player";
+import React, { useEffect, useRef } from 'react';
+import videojs from 'video.js';
+import 'video.js/dist/video-js.css';
+const VideoPlayer: React.FC = () => {
+  const videoRef = useRef(null);
+  useEffect(() => {
+    const player = videojs(videoRef.current!, {
+      controls: true, // Show video controls
+    });
+    player.src({
+      src:'/SampleVideo.mp4',
+      type: 'video/mp4',
+    });
+    return () => {
+      if (player) {
+        player.dispose();
+      }
+    };
+  }, []);
 
-const MyVideoPlayer: React.FC<{ videoSrc: string }> = ({ videoSrc }) => {
   return (
-    <div>
-      <VideoPlayer
-        controls
-        src={videoSrc}
-        width="450"
-        height="300"
-        preload="auto"
-        options={{
-            controls: true, 
-            playbackRates: [0.5, 1, 1.5, 2],
-            controlBar: {
-              playToggle: true,
-              volumePanel: {
-                inline: true,
-              },
-            },
-          }}
-      />
+    <div data-vjs-player>
+      <video ref={videoRef} className="video-js" />
     </div>
   );
 };
 
-export default MyVideoPlayer;
+export default VideoPlayer;

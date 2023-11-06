@@ -1,15 +1,12 @@
 import React, { FunctionComponent,useState } from "react";
 import VideoPlayer from './videoPlayer';
 
-const video = require('../../Assets/Sample Video.mp4');
-
 const Video: FunctionComponent = () => {
-    const videoSource = video;
       return (
         <div className="App">
-          <h1>React Video Player</h1>
-          <div style={{borderRadius:"40px"}}><VideoPlayer videoSrc={videoSource} /></div>
-        </div>
+        <h1>Video.js in React TypeScript with Yarn</h1>
+        <VideoPlayer />
+      </div>
       );
     };
 export default Video;

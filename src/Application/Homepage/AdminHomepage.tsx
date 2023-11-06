@@ -87,7 +87,7 @@ const AdminHomepage: FunctionComponent = () => {
     const [UpdateImg,setUpdateImg] =useState("");
     const [UpdateTitle,setUpdateTitle] =useState("");
     const [UpdateDescription,setUpdateDescription] =useState("");
-  const [values,setvalues] =useState<boolean | undefined>()
+    const [values,setvalues] =useState<boolean >(false)
     const handleChange = (event: any, newValue: any) => {
         setValue(newValue);
     };
@@ -161,8 +161,6 @@ const AdminHomepage: FunctionComponent = () => {
             const data: UserData = JSON.parse(storedData);
             setUser(data);
         }
-
-    setvalues(false)
     }, [values]);
       
   const handleSubmit1 = () => {

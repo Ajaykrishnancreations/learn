@@ -5,7 +5,7 @@ const UserProfile: React.FC = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [User, setUser] = useState<UserData | null>(null);
   const [name, setName] = useState<string | undefined>(User?.name);
-  const [value,setvalue] =useState<boolean | undefined>()
+  const [value,setvalue] =useState<boolean>(false)
   interface UserData {
     email:string
     name: string

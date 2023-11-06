@@ -161,3 +161,10 @@ body {
 .vjs-has-started .vjs-control-bar {
   border-radius: 0px 0px 10px 10px;
 }
+.vjs_video_3-dimensions {
+  width: 480px;
+  height: 270px;
+}
+.video-js .vjs-tech {
+  border-radius: 12px;
+}
