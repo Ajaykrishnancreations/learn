@@ -63,14 +63,12 @@ const StudentHomepage: FunctionComponent = () => {
           <div className="p-4 p-4 col-lg-4 md-12 sm-12 mt-2 " key={course._id}>
             <Card sx={{ maxWidth: 345 }}>
               <CardActionArea>
-                <a href="/Course">
                   <CardMedia
                     component="img"
                     height="140"
                     image={course.img}
                     alt={course.title}
                   />
-                </a>
                 <CardContent>
                   <Typography gutterBottom variant="h5" component="div">
                     {course.title}

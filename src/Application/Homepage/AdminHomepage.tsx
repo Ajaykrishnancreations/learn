@@ -9,7 +9,7 @@ import Tab from '@mui/material/Tab';
 import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
-import { getCourse, postCourse, getAllStudentInfo,courseUpdates} from "../../ApiService/ApiServices";
+import { getCourse, postCourse, getAllStudentInfo, courseUpdates,addVideo } from "../../ApiService/ApiServices";
 import { FaEdit } from "react-icons/fa";
 import Button from '@mui/material/Button';
 import { styled } from '@mui/material/styles';
@@ -62,12 +62,12 @@ type FormData = {
     role: string;
 };
 
-interface courseUpdate{
-  _id: any
-  title: string|number
-  img:any
-  description:string|number
-  role:any
+interface courseUpdate {
+    _id: any
+    title: string | number
+    img: any
+    description: string | number
+    role: any
 }
 
 const AdminHomepage: FunctionComponent = () => {
@@ -84,10 +84,13 @@ const AdminHomepage: FunctionComponent = () => {
     const [selectedCourse, setSelectedCourse] = useState<Course | null>(null);
     const [open, setOpen] = React.useState(false);
     const [User, setUser] = useState<UserData | null>(null);
-    const [UpdateImg,setUpdateImg] =useState("");
-    const [UpdateTitle,setUpdateTitle] =useState("");
-    const [UpdateDescription,setUpdateDescription] =useState("");
-    const [values,setvalues] =useState<boolean >(false)
+    const [UpdateImg, setUpdateImg] = useState("");
+    const [UpdateTitle, setUpdateTitle] = useState("");
+    const [UpdateDescription, setUpdateDescription] = useState("");
+    const [values, setvalues] = useState<boolean>(false)
+    const [VideoTitle, setVideoTitle] = useState<string>('');
+    const [Videofile, setVideofile] = useState<File | null>(null);
+
     const handleChange = (event: any, newValue: any) => {
         setValue(newValue);
     };
@@ -102,7 +105,7 @@ const AdminHomepage: FunctionComponent = () => {
         setOpen(false);
     };
     interface BootstrapDialogProps {
-        theme?: any; // Add the appropriate type for theme
+        theme?: any;
     }
 
     const BootstrapDialog = styled(Dialog)<BootstrapDialogProps>(({ theme }) => ({
@@ -133,6 +136,38 @@ const AdminHomepage: FunctionComponent = () => {
         }
     };
 
+    const handleVideoTitleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setVideoTitle(event.target.value);
+    };
+
+    const handleVideoFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const file = event.target.files?.[0] || null;
+        setVideofile(file);
+    };
+
+    const uploadVideo = async () => {
+        if (!VideoTitle || !Videofile) {
+            alert('Please enter a title and select a video file.');
+            return;
+        }
+
+        try {
+            const formData = new FormData();
+            formData.append('title', VideoTitle);
+            formData.append('video', Videofile);
+            const response =await addVideo(formData);
+            if (response?.message==="Video added successfully") {
+                alert('Video added successfully');
+            } else {
+                alert('Server error. Please try again later.');
+            }
+        } catch (error) {
+            console.error('Error uploading video:', error);
+            alert('An error occurred while uploading the video. Please try again later.');
+        }
+    };
+
+
     useEffect(() => {
         const Payload: emailPayload = {
             email: User?.email
@@ -162,19 +197,19 @@ const AdminHomepage: FunctionComponent = () => {
             setUser(data);
         }
     }, [values]);
-      
-  const handleSubmit1 = () => {
-    const Payload:courseUpdate = {
-      _id:selectedCourse?._id,
-  title: UpdateTitle,
-  img:UpdateImg,
-  description:UpdateDescription,
-  role:selectedCourse?.role
+
+    const handleSubmit1 = () => {
+        const Payload: courseUpdate = {
+            _id: selectedCourse?._id,
+            title: UpdateTitle,
+            img: UpdateImg,
+            description: UpdateDescription,
+            role: selectedCourse?.role
+        };
+        courseUpdates(Payload)
+        handleClose();
+        setvalues(true)
     };
-    courseUpdates(Payload)
-    handleClose();
-    setvalues(true)
-};
     return (
         <>
             <>
@@ -202,6 +237,7 @@ const AdminHomepage: FunctionComponent = () => {
                                 <Tab label="View Course" value="1" />
                                 <Tab label="Add Course" value="2" />
                                 <Tab label="View Student" value="3" />
+                                <Tab label="Add Video" value="4" />
                             </TabList>
                         </Box>
                         <TabPanel value="1">
@@ -257,9 +293,9 @@ const AdminHomepage: FunctionComponent = () => {
                                         <CloseIcon />
                                     </IconButton>
                                     <DialogContent dividers>
-                                        <Typography>Img url : <input className="form-control login-input" type="text" defaultValue={selectedCourse?.img} onChange={(e) =>setUpdateImg(e.target.value)}></input></Typography>
-                                        <Typography>Title : <input className="form-control login-input" type="text" defaultValue={selectedCourse?.title} onChange={(e) =>setUpdateTitle(e.target.value)}></input></Typography>
-                                        <Typography>Description : <textarea name="postContent" rows={4} cols={40} className="form-control login-input"  onChange={(e) =>setUpdateDescription(e.target.value)} defaultValue={selectedCourse?.description} ></textarea></Typography>
+                                        <Typography>Img url : <input className="form-control login-input" type="text" defaultValue={selectedCourse?.img} onChange={(e) => setUpdateImg(e.target.value)}></input></Typography>
+                                        <Typography>Title : <input className="form-control login-input" type="text" defaultValue={selectedCourse?.title} onChange={(e) => setUpdateTitle(e.target.value)}></input></Typography>
+                                        <Typography>Description : <textarea name="postContent" rows={4} cols={40} className="form-control login-input" onChange={(e) => setUpdateDescription(e.target.value)} defaultValue={selectedCourse?.description} ></textarea></Typography>
                                     </DialogContent>
                                     <DialogActions>
                                         <Button onClick={handleSubmit1}>
@@ -338,6 +374,19 @@ const AdminHomepage: FunctionComponent = () => {
                                         </div>
                                     ))}
                                 </div>
+                            </div>
+                        </TabPanel>
+                        <TabPanel value="4">
+                            <div>
+                                <h5>Add video</h5>
+                                <p>Title:      <input
+                                    type="text"
+                                    placeholder="Video Title"
+                                    value={VideoTitle}
+                                    onChange={handleVideoTitleChange}
+                                /></p>
+                                <p>Video:<input type="file" accept="video/*" onChange={handleVideoFileChange} /></p>
+                                <button className="Button w-25 mt-1" onClick={uploadVideo}>Upload</button>
                             </div>
                         </TabPanel>
                     </TabContext>

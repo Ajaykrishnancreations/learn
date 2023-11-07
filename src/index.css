@@ -157,6 +157,8 @@ body {
 .video-js {
   border-radius: 10px;
   margin: 10px;
+  height: 250px;
+  width: 400px;
 }
 .vjs-has-started .vjs-control-bar {
   border-radius: 0px 0px 10px 10px;
@@ -167,4 +169,17 @@ body {
 }
 .video-js .vjs-tech {
   border-radius: 12px;
+}
+.profile-card{
+    max-width: 400;
+    margin: '0 auto'
+}
+.profile-avatar{
+  width: 100;
+  height: 100
+}
+.profile-editButton{
+  position: 'absolute';
+  top: 0;
+  right: 0
 }

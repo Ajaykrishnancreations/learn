@@ -6,5 +6,6 @@ export const getUserDetails = (): string | null => {
 export const SideNavConfigs = {
   Home: true,
   Profile:true,
-  Community:true
+  Community:true,
+  Course:true
 } as const;

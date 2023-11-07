@@ -271,3 +271,32 @@ export const refreshToken = async (payload: any) => {
 
     }
 };
+export const addVideo = async (payload: any) => {
+  const path = `/addNewVideo`;
+    try {
+      const response = await axios.request({
+        url: `${configUrl}${path}`,
+        method: 'post',
+        data: payload
+      });
+      return response.data;
+    } catch (error) {
+      console.error("Error:", error);
+      throw error;
+    }
+};
+
+export const getVideos = async () => {
+  const path = `/getVideos`;
+    try {
+      const response = await axios.request({
+        url: `${configUrl}${path}`,
+        method: 'get',
+      });
+      return response.data;
+
+    } catch (error) {
+      console.error("Error:", error);
+      throw error;
+    }
+  }

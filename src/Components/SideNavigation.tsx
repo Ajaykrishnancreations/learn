@@ -181,6 +181,15 @@ export default function Index({ children }: IProps) {
           </ListItemButton>
         ) : null
         }
+        {Profile_Tabs ? (
+          <ListItemButton onClick={() => { handleNavstyle(2); navigate('/Course') }} sx={navStyle('/Course')} >
+            <ListItemIcon>
+              <GroupIcon />
+            </ListItemIcon>
+            {open ? <ListItemText primary={'Course'} /> : null}
+          </ListItemButton>
+        ) : null
+        }
       </List>
     );
   };
