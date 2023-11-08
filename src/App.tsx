@@ -19,11 +19,11 @@ function App() {
           <Routes>
             <Route path="/" element={<Login />} />
             <Route element={<PageFrame />}>
-              <Route path="/home" element={<Home />} />
-              <Route path="/Profile" element={<UserProfile />} />
-              <Route path="/Community" element={<Community />} />
-              <Route path="/Course" element={<Video />} />
+            <Route path="/home" element={<Home />} />
+            <Route path="/Profile" element={<UserProfile />} />
+            <Route path="/Community" element={<Community />} />
             </Route>
+            <Route path="/Course" element={<Video />} />
           </Routes>
         </Suspense>
       </Themes>

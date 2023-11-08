@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import List from '@mui/material/List';
@@ -21,6 +21,7 @@ import { SideNavConfigs } from '../Helpers/UserDetails';
 import { GrHomeRounded } from 'react-icons/gr';
 import { GrDocumentUser } from "react-icons/gr";
 import GroupIcon from '@mui/icons-material/Group';
+import { BsFillCameraVideoFill } from "react-icons/bs";
 const root = document.querySelector(":root");
 const primary = root ? getComputedStyle(root).getPropertyValue("--primaryColor") : '';
 const navbar = "#193389";
@@ -149,7 +150,14 @@ export default function Index({ children }: IProps) {
   const handleNavstyle = (index: number) => {
     setActive(index)
   }
-
+  const [User, setUser] = useState<any>();
+  useEffect(() => {
+    const storedData = localStorage.getItem("session");
+    if (storedData) {
+      const data:any = JSON.parse(storedData);
+      setUser(data);
+    }
+  }, []);
   const ListTabs = () => {
     return (
       <List className='w-100 text-black pt-4' sx={{ bgcolor: `${navbar}`, }} component='nav' aria-labelledby='nested-list-subheader'>
@@ -181,15 +189,20 @@ export default function Index({ children }: IProps) {
           </ListItemButton>
         ) : null
         }
-        {Profile_Tabs ? (
+        {User?.role==="admin"?"": 
+        <>
+          {Profile_Tabs ? (
           <ListItemButton onClick={() => { handleNavstyle(2); navigate('/Course') }} sx={navStyle('/Course')} >
             <ListItemIcon>
-              <GroupIcon />
+              <BsFillCameraVideoFill />
             </ListItemIcon>
             {open ? <ListItemText primary={'Course'} /> : null}
           </ListItemButton>
         ) : null
         }
+        </>
+        }
+
       </List>
     );
   };
