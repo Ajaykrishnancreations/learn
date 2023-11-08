@@ -12,7 +12,7 @@ interface Video {
 const VideoPlayer: React.FC = () => {
   const [videos, setVideos] = useState<Video[]>([]);
   const videoRef = useRef<HTMLVideoElement | null>(null);
-  const videoUrl = '/sample.mp4';
+  const video = require("../../Assets/sample.mp4")
   useEffect(() => {
     const fetchVideos = async () => {
       try {
@@ -38,7 +38,7 @@ const VideoPlayer: React.FC = () => {
     <div className='video-screen-background'>
       <div className="background-video-container">
         <video autoPlay loop muted className="background-video">
-          <source src={videoUrl} type="video/mp4" />
+          <source src={video} type="video/mp4" />
           Your browser does not support the video tag.
         </video>
         <div className="text-overlay learning-content" style={{ paddingTop: "500px" }}>
