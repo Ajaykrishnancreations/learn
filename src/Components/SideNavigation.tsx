@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useState,useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import List from '@mui/material/List';
@@ -8,9 +8,9 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import { makeStyles } from '@mui/styles';
-import KeyboardDoubleArrowLeftIcon from '@mui/icons-material/KeyboardDoubleArrowLeft';
+import { AiOutlineDoubleLeft } from "react-icons/ai";
 import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArrowRight';
-import Logo from '../Assets/Icon1.png';
+import Logo from '../Assets/Icon 2.png';
 import { useNavigate } from 'react-router-dom';
 import { AppBarProps as MuiAppBarProps } from '@mui/material/AppBar';
 import { AppBar as MuiAppBar, Drawer as MuiDrawer } from "@mui/material";
@@ -18,16 +18,16 @@ import Header from './Header';
 import { useMediaQuery, useTheme } from '@mui/material';
 import { Theme, CSSObject } from '@mui/material/styles';
 import { SideNavConfigs } from '../Helpers/UserDetails';
-import { GrHomeRounded } from 'react-icons/gr';
-import { GrDocumentUser } from "react-icons/gr";
+import { AiFillHome } from "react-icons/ai";
+import { BsPersonCircle } from "react-icons/bs";
 import GroupIcon from '@mui/icons-material/Group';
 import { BsFillCameraVideoFill } from "react-icons/bs";
 const root = document.querySelector(":root");
 const primary = root ? getComputedStyle(root).getPropertyValue("--primaryColor") : '';
-const navbar = "#193389";
+const navbar = "#144c41";
 
-interface IProps{
-  children:React.ReactNode
+interface IProps {
+  children: React.ReactNode
 }
 
 const useStyles = makeStyles({
@@ -51,7 +51,7 @@ const useStyles = makeStyles({
 });
 
 
-const drawerWidth:number = 200;
+const drawerWidth: number = 250;
 const openedMixin = (theme: Theme): CSSObject => ({
   width: drawerWidth,
   transition: theme.transitions.create('width', {
@@ -137,11 +137,11 @@ export default function Index({ children }: IProps) {
     setResponsiveopen(!responsiveOpen);
   };
   const Home_Tabs = SideNavConfigs?.Home;
-  const Profile_Tabs=SideNavConfigs?.Profile;
+  const Profile_Tabs = SideNavConfigs?.Profile;
   const navStyle = (index: string) => {
     return {
       backgroundColor: location123 === index ? '#6EC9E8' : null,
-      padding: open ? null:'20px',
+      padding: open ? null : '20px',
       '&:hover': {
         backgroundColor: location123 === index ? '#6EC9E8' : null
       }
@@ -154,7 +154,7 @@ export default function Index({ children }: IProps) {
   useEffect(() => {
     const storedData = localStorage.getItem("session");
     if (storedData) {
-      const data:any = JSON.parse(storedData);
+      const data: any = JSON.parse(storedData);
       setUser(data);
     }
   }, []);
@@ -163,45 +163,99 @@ export default function Index({ children }: IProps) {
       <List className='w-100 text-black pt-4' sx={{ bgcolor: `${navbar}`, }} component='nav' aria-labelledby='nested-list-subheader'>
         {/* Home */}
         {Home_Tabs ? (
-          <ListItemButton onClick={() => { handleNavstyle(1); navigate('/home') }} sx={navStyle('/home')} >
+          <ListItemButton
+            onClick={() => {
+              handleNavstyle(1);
+              navigate('/home');
+            }}
+            sx={{
+              ...navStyle('/home'),
+              "&.active-tag": {
+                backgroundColor: "#26927c",
+              },
+            }}
+            style={{
+              backgroundColor: location123 === '/home' ? "#26927c" : "transparent",
+            }}
+          >
             <ListItemIcon>
-              <GrHomeRounded size={18} color='#050505' opacity={'75%'} />
+              <AiFillHome color="white" size={20} />
             </ListItemIcon>
             {open ? <ListItemText primary={'Home'} /> : null}
           </ListItemButton>
-        ) : null
-        }
+        ) : null}
         {Profile_Tabs ? (
-          <ListItemButton onClick={() => { handleNavstyle(2); navigate('/Profile') }} sx={navStyle('/Profile')} >
-            <ListItemIcon>
-              <GrDocumentUser size={18} color='#050505' opacity={'75%'} />
-            </ListItemIcon>
-            {open ? <ListItemText primary={'Profile'} /> : null}
-          </ListItemButton>
-        ) : null
-        }
-        {Profile_Tabs ? (
-          <ListItemButton onClick={() => { handleNavstyle(2); navigate('/Community') }} sx={navStyle('/Community')} >
-            <ListItemIcon>
-              <GroupIcon />
-            </ListItemIcon>
-            {open ? <ListItemText primary={'Community'} /> : null}
-          </ListItemButton>
-        ) : null
-        }
-        {User?.role==="admin"?"": 
-        <>
-          {Profile_Tabs ? (
-          <ListItemButton onClick={() => { handleNavstyle(2); navigate('/Course') }} sx={navStyle('/Course')} >
-            <ListItemIcon>
-              <BsFillCameraVideoFill />
-            </ListItemIcon>
-            {open ? <ListItemText primary={'Course'} /> : null}
-          </ListItemButton>
-        ) : null
-        }
-        </>
-        }
+  <ListItemButton
+    onClick={() => {
+      handleNavstyle(2);
+      navigate('/Profile');
+    }}
+    sx={{
+      ...navStyle('/Profile'),
+      "&.active-tag": {
+        backgroundColor: "#26927c",
+      },
+    }}
+    style={{
+      backgroundColor: location123 === '/Profile' ? "#26927c" : "transparent",
+    }}
+  >
+    <ListItemIcon>
+      <BsPersonCircle color="white" size={20} />
+    </ListItemIcon>
+    {open ? <ListItemText primary={'Profile'} /> : null}
+  </ListItemButton>
+) : null}
+
+{Profile_Tabs ? (
+  <ListItemButton
+    onClick={() => {
+      handleNavstyle(2);
+      navigate('/Community');
+    }}
+    sx={{
+      ...navStyle('/Community'),
+      "&.active-tag": {
+        backgroundColor: "#26927c",
+      },
+    }}
+    style={{
+      backgroundColor: location123 === '/Community' ? "#26927c" : "transparent",
+    }}
+  >
+    <ListItemIcon>
+      <GroupIcon style={{color:"white",fontSize:"24"}} />
+    </ListItemIcon>
+    {open ? <ListItemText primary={'Community'} /> : null}
+  </ListItemButton>
+) : null}
+
+{User?.role === "admin" ? (
+  null
+) : (
+  Profile_Tabs ? (
+    <ListItemButton
+      onClick={() => {
+        handleNavstyle(2);
+        navigate('/Course');
+      }}
+      sx={{
+        ...navStyle('/Course'),
+        "&.active-tag": {
+          backgroundColor: "#26927c",
+        },
+      }}
+      style={{
+        backgroundColor: location123 === '/Course' ? "#26927c" : "transparent",
+      }}
+    >
+      <ListItemIcon>
+        <BsFillCameraVideoFill color="white" size={20}/>
+      </ListItemIcon>
+      {open ? <ListItemText primary={'Course'} /> : null}
+    </ListItemButton>
+  ) : null
+)}
 
       </List>
     );
@@ -215,7 +269,7 @@ export default function Index({ children }: IProps) {
               <Box />
               {open && <img className="mt-3" width={'50px'} src={Logo} />}
               <IconButton onClick={handleMobileDrawer}>
-                <KeyboardDoubleArrowLeftIcon className='text-black' />
+                <AiOutlineDoubleLeft style={{color:"white"}} />
               </IconButton>
             </DrawerHeader>
             {ListTabs()}
@@ -238,7 +292,7 @@ export default function Index({ children }: IProps) {
               <div>
                 {open ? (
                   <IconButton onClick={handleDrawer}>
-                    <KeyboardDoubleArrowLeftIcon className='text-black' />
+                    <AiOutlineDoubleLeft style={{color:"white"}} />
                   </IconButton>
                 ) : (
                   <IconButton onClick={handleDrawer} className={classes.popIcon}>
@@ -251,7 +305,7 @@ export default function Index({ children }: IProps) {
           </Drawer>
           <Box component='main' flexGrow={1} minHeight={'100vh'} maxHeight={'max-content'} sx={{ width: '900px', scrollBehavior: 'smooth' }}>
             <Box component={'div'} position={'sticky'} top={0} zIndex={9}>
-              <Header handleSideBar={handleMobileDrawer}/>
+              <Header handleSideBar={handleMobileDrawer} />
             </Box>
             <Box position={'relative'}>{children}</Box>
           </Box>

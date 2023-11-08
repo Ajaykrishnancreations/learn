@@ -27,7 +27,7 @@ const VideoPlayer: React.FC = () => {
         <source src={video} type="video/mp4" />
         Your browser does not support the video tag.
       </video>
-      <div className="text-overlay learning-content">
+      <div className="text-overlay learning-content" style={{paddingTop:"500px"}}>
         <h1>Welcome to Learning module</h1>
         <p>You can access all the learning content here</p>
       </div>
