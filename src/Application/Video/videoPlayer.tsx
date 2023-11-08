@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { getVideos } from '../../ApiService/ApiServices';
+import { getVideos } from "../../ApiService/ApiServices";
 import videojs from 'video.js';
 import 'video.js/dist/video-js.css';
 interface Video {
@@ -12,28 +12,28 @@ interface Video {
 const VideoPlayer: React.FC = () => {
   const [videos, setVideos] = useState<Video[]>([]);
   const videoRef = useRef<HTMLVideoElement | null>(null);
-  const video = require("../../Assets/sample.mp4")
+  const video = require("../../Assets/sample.mp4");
   useEffect(() => {
     const fetchVideos = async () => {
       try {
         const response = await getVideos();
         setVideos(response);
       } catch (error) {
-        console.error('Error fetching videos:', error);
+        console.error("Error fetching videos:", error);
       }
     };
     fetchVideos();
+    if (videoRef.current) {
+      videojs(videoRef.current, function () {
+      });
+    }
     return () => {
       if (videoRef.current) {
         videojs(videoRef.current).dispose();
       }
     };
   }, []);
-  useEffect(() => {
-    if (videoRef.current) {
-      videojs(videoRef.current);
-    }
-  }, [videos]);
+
   return (
     <div className='video-screen-background'>
       <div className="background-video-container">
@@ -51,12 +51,7 @@ const VideoPlayer: React.FC = () => {
         {videos.map((video, index) => (
           <div key={video._id} className='col-3'>
             <center>
-              <video
-                ref={videoRef}
-                data-setup='{}'
-                className="video-js vjs-default-skin"
-                controls
-              >
+              <video ref={videoRef} data-setup='{}' className="video-js vjs-default-skin" controls>
                 <source src={`http://localhost:4000/${video.video}`} type="video/mp4" />
               </video>
               <b style={{ padding: "10px", color: "white" }}>{video.title}</b>
