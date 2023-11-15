@@ -15,7 +15,7 @@ body {
 :root {
   --primaryColor: #e05717;
   --BackgroundColor: #f8f8f7;
-  --darkblueColor: #193389;
+  --darkblueColor: #144D41;
   --inputlabelColor: #000000;
   --whiteColor: #ffffff;
   --greencompletedColor: rgba(82, 193, 90, 0.27);
@@ -266,3 +266,4 @@ body {
   display: block;
   color: white;
 }
+
