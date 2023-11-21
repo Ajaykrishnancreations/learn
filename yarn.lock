@@ -7737,6 +7737,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"fast-speedtest-api@npm:^0.3.2":
+  version: 0.3.2
+  resolution: "fast-speedtest-api@npm:0.3.2"
+  bin:
+    fast-speedtest: ./src/cli.js
+  checksum: d98f9eb590165b9a865208c813c51e026301ea0f87167ede37176360adebfeefe2a02ca7a81482f56a57778b5279bcd7caff552295639508674f2268c4447756
+  languageName: node
+  linkType: hard
+
 "fastq@npm:^1.6.0":
   version: 1.15.0
   resolution: "fastq@npm:1.15.0"
@@ -13843,6 +13852,7 @@ __metadata:
     crypto: ^1.0.1
     crypto-browserify: ^3.12.0
     dayjs: ^1.11.7
+    fast-speedtest-api: ^0.3.2
     file-saver: ^2.0.5
     fuzzy-search: ^3.2.1
     jquery: ^3.7.0

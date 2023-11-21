@@ -160,10 +160,6 @@ body {
   height: 180px;
   width: 300px;
 }
-.video-js:hover{
-  height: 190px;
-  width: 310px;
-}
 .vjs-has-started .vjs-control-bar {
   border-radius: 0px 0px 10px 10px;
 }
@@ -189,7 +185,7 @@ body {
 }
 .video-screen-background{
   background-color: #0f1014;
-  height: 180vh;
+  height: 100;
 }
 .css-hip9hq-MuiPaper-root-MuiAppBar-root {
   background-color: #01392d !important;

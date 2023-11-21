@@ -287,7 +287,7 @@ export const addVideo = async (payload: any) => {
 };
 
 export const getVideos = async () => {
-  const path = `/getVideos`;
+  const path = `/getVideos/video`;
     try {
       const response = await axios.request({
         url: `${configUrl}${path}`,
