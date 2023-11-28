@@ -5929,6 +5929,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"core-js@npm:^3.26.1":
+  version: 3.33.3
+  resolution: "core-js@npm:3.33.3"
+  checksum: 070b9c696f5a9b22bab0208daf9fcdffbc3b4f4c89ed2be512b7d99d4be363accfbb26fa6eec7261055d89e8ea0a5bcfccad5923fe43f1f2eafca9f568cc5596
+  languageName: node
+  linkType: hard
+
 "core-util-is@npm:~1.0.0":
   version: 1.0.3
   resolution: "core-util-is@npm:1.0.3"
@@ -6340,6 +6347,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"custom-event-polyfill@npm:^1.0.7":
+  version: 1.0.7
+  resolution: "custom-event-polyfill@npm:1.0.7"
+  checksum: f9ff2cf13e482a75b3cf83dce9e2c6e3063c5ac1b9c23ac440e4f27e875b0873445b11811237f3f30aeb1216e9ad20f9f9d30ccf5b1b658a4e50dd0b3e67b629
+  languageName: node
+  linkType: hard
+
 "cyclist@npm:^1.0.1":
   version: 1.0.2
   resolution: "cyclist@npm:1.0.2"
@@ -6465,7 +6479,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"deepmerge@npm:^4.2.2":
+"deepmerge@npm:^4.0.0, deepmerge@npm:^4.2.2":
   version: 4.3.1
   resolution: "deepmerge@npm:4.3.1"
   checksum: 2024c6a980a1b7128084170c4cf56b0fd58a63f2da1660dcfe977415f27b17dbe5888668b59d0b063753f3220719d5e400b7f113609489c90160bb9a5518d052
@@ -7533,7 +7547,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eventemitter3@npm:^4.0.0":
+"eventemitter3@npm:^4.0.0, eventemitter3@npm:^4.0.3":
   version: 4.0.7
   resolution: "eventemitter3@npm:4.0.7"
   checksum: 1875311c42fcfe9c707b2712c32664a245629b42bb0a5a84439762dd0fd637fc54d078155ea83c2af9e0323c9ac13687e03cfba79b03af9f40c89b4960099374
@@ -7734,15 +7748,6 @@ __metadata:
   version: 2.0.6
   resolution: "fast-levenshtein@npm:2.0.6"
   checksum: 92cfec0a8dfafd9c7a15fba8f2cc29cd0b62b85f056d99ce448bbcd9f708e18ab2764bda4dd5158364f4145a7c72788538994f0d1787b956ef0d1062b0f7c24c
-  languageName: node
-  linkType: hard
-
-"fast-speedtest-api@npm:^0.3.2":
-  version: 0.3.2
-  resolution: "fast-speedtest-api@npm:0.3.2"
-  bin:
-    fast-speedtest: ./src/cli.js
-  checksum: d98f9eb590165b9a865208c813c51e026301ea0f87167ede37176360adebfeefe2a02ca7a81482f56a57778b5279bcd7caff552295639508674f2268c4447756
   languageName: node
   linkType: hard
 
@@ -8637,6 +8642,23 @@ __metadata:
   bin:
     he: bin/he
   checksum: 3d4d6babccccd79c5c5a3f929a68af33360d6445587d628087f39a965079d84f18ce9c3d3f917ee1e3978916fc833bb8b29377c3b403f919426f91bc6965e7a7
+  languageName: node
+  linkType: hard
+
+"hls.js@npm:^0.14.17":
+  version: 0.14.17
+  resolution: "hls.js@npm:0.14.17"
+  dependencies:
+    eventemitter3: ^4.0.3
+    url-toolkit: ^2.1.6
+  checksum: 0b9a9650092c92462b452d72a6ce9544359364a35692578b0c36ba2585e0d133de11f081f3dba21866447be60d7834eb182c370df53d3c0849f17b3b111461e3
+  languageName: node
+  linkType: hard
+
+"hls.js@npm:^1.4.12":
+  version: 1.4.12
+  resolution: "hls.js@npm:1.4.12"
+  checksum: a30c055ea1fc9ee9f4eee1b8b17f7ed7900ebe25e790de4f3097a03afb841cf138d51b67ef27e09700672395e305302d1d68b3b9f6c0bce3c1c6692fad86008c
   languageName: node
   linkType: hard
 
@@ -10735,6 +10757,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"load-script@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "load-script@npm:1.0.0"
+  checksum: 8458e3f07b4a86f8d9d66e47a987811491a5d013af23ba7b371c6d3c9dc899885b072ccf65abf7874c10cb197d4975eacd8a7a125bfb38dbbcb267539f5dc1e9
+  languageName: node
+  linkType: hard
+
 "loader-runner@npm:^2.4.0":
   version: 2.4.0
   resolution: "loader-runner@npm:2.4.0"
@@ -10775,6 +10804,13 @@ __metadata:
   version: 3.2.1
   resolution: "loader-utils@npm:3.2.1"
   checksum: 4e3ea054cdc8be1ab1f1238f49f42fdf0483039eff920fb1d442039f3f0ad4ebd11fb8e584ccdf2cb7e3c56b3d40c1832416e6408a55651b843da288960cc792
+  languageName: node
+  linkType: hard
+
+"loadjs@npm:^4.2.0":
+  version: 4.2.0
+  resolution: "loadjs@npm:4.2.0"
+  checksum: 2144723f55c75260ce6781b36009c40d098d96fe06e3ec5c85ba250cf96c3a0aa37169b829e818c40bcba7c5141a8e52736fec193333bb6260ab95f9a493a2ef
   languageName: node
   linkType: hard
 
@@ -11094,6 +11130,13 @@ __metadata:
   dependencies:
     fs-monkey: ^1.0.3
   checksum: fcd037566a4bbb00d61dc991858395ccc06267ab5fe9471aeff28433f2a210bf5dd999e64e8b5473f8244f00dfb7ff3221b5c2fe41ff98af1439e5e2168fc410
+  languageName: node
+  linkType: hard
+
+"memoize-one@npm:^5.1.1":
+  version: 5.2.1
+  resolution: "memoize-one@npm:5.2.1"
+  checksum: a3cba7b824ebcf24cdfcd234aa7f86f3ad6394b8d9be4c96ff756dafb8b51c7f71320785fbc2304f1af48a0467cbbd2a409efc9333025700ed523f254cb52e3d
   languageName: node
   linkType: hard
 
@@ -12338,6 +12381,19 @@ __metadata:
   languageName: node
   linkType: hard
 
+"plyr@npm:^3.7.8":
+  version: 3.7.8
+  resolution: "plyr@npm:3.7.8"
+  dependencies:
+    core-js: ^3.26.1
+    custom-event-polyfill: ^1.0.7
+    loadjs: ^4.2.0
+    rangetouch: ^2.0.1
+    url-polyfill: ^1.1.12
+  checksum: 7eac9ea02269059a95f2ed945ab03932f472ae1c2e2c4789c6d3b08b62c4b477fe5a1a507f3530c7394a3450a937df8ef9c0fdedb6819f86b1ccc05ef1935d62
+  languageName: node
+  linkType: hard
+
 "posix-character-classes@npm:^0.1.0":
   version: 0.1.1
   resolution: "posix-character-classes@npm:0.1.1"
@@ -13490,6 +13546,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"rangetouch@npm:^2.0.1":
+  version: 2.0.1
+  resolution: "rangetouch@npm:2.0.1"
+  checksum: 2aa7c0901d28356ef0c02021656ed7d11fc6652f01ffe92806862fc4593e75f7a5d52d4455fa1b0ab2123d438e03dc091315949dbfad9562a680440ac0dfeb7d
+  languageName: node
+  linkType: hard
+
 "raw-body@npm:2.5.1":
   version: 2.5.1
   resolution: "raw-body@npm:2.5.1"
@@ -13591,6 +13654,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-hls-player@npm:^3.0.7":
+  version: 3.0.7
+  resolution: "react-hls-player@npm:3.0.7"
+  dependencies:
+    hls.js: ^0.14.17
+  peerDependencies:
+    react: ^16.13.1
+    react-dom: ^16.13.1
+  checksum: 8398f67eee4731ca5f88cb4ddf74808caee95d1422e5939d678004a207e8f55921b0191c0f9d08749c8bf398a40c98b9f1a0ba26780a265c150a83116c7696a9
+  languageName: node
+  linkType: hard
+
 "react-hook-form@npm:^7.46.2":
   version: 7.47.0
   resolution: "react-hook-form@npm:7.47.0"
@@ -13637,6 +13712,21 @@ __metadata:
     react: ^15.5.x || ^16.x || ^17.x || ^18.x
     react-dom: ^15.5.x || ^16.x || ^17.x || ^18.x
   checksum: a7cfe62e91f7f92891cda7b885d6eec7b2854850f8703ccafcea5c04bb93a210a566a70b51b9fae0cc30c3485e04eb6a3f3ae58f495cac3ec2747b4fc44d1ad2
+  languageName: node
+  linkType: hard
+
+"react-player@npm:^2.13.0":
+  version: 2.13.0
+  resolution: "react-player@npm:2.13.0"
+  dependencies:
+    deepmerge: ^4.0.0
+    load-script: ^1.0.0
+    memoize-one: ^5.1.1
+    prop-types: ^15.7.2
+    react-fast-compare: ^3.0.1
+  peerDependencies:
+    react: ">=16.6.0"
+  checksum: 7e0e69e0ac37227ab5bfdda73991d4f5d4741585562f3ad9cfb787ae2c427510b69ddf6ef3f23f319d699b790af852fca57f3e9b1dae94f385d545a3db200d67
   languageName: node
   linkType: hard
 
@@ -13852,19 +13942,22 @@ __metadata:
     crypto: ^1.0.1
     crypto-browserify: ^3.12.0
     dayjs: ^1.11.7
-    fast-speedtest-api: ^0.3.2
     file-saver: ^2.0.5
     fuzzy-search: ^3.2.1
+    hls.js: ^1.4.12
     jquery: ^3.7.0
     jsonwebtoken: ^9.0.2
     jwt-decode: ^3.1.2
     moment: ^2.29.4
     notistack: ^3.0.1
+    plyr: ^3.7.8
     react: ^18.2.0
     react-datepicker: ^4.14.1
     react-dom: ^18.2.0
+    react-hls-player: ^3.0.7
     react-hook-form: ^7.46.2
     react-icons: ^4.8.0
+    react-player: ^2.13.0
     react-router-dom: ^6.8.2
     react-scripts: 5.0.1
     react-test-renderer: ^18.2.0
@@ -16091,7 +16184,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"url-toolkit@npm:^2.2.1":
+"url-polyfill@npm:^1.1.12":
+  version: 1.1.12
+  resolution: "url-polyfill@npm:1.1.12"
+  checksum: 3214cc82424c215e921dacadac56b4b099f995d24e14078369bea9ff8aa74d1a4c803ab03021e61e0a275bee7979d212d046092dba3aab73cf232ee6739ddee4
+  languageName: node
+  linkType: hard
+
+"url-toolkit@npm:^2.1.6, url-toolkit@npm:^2.2.1":
   version: 2.2.5
   resolution: "url-toolkit@npm:2.2.5"
   checksum: c784040bd4dbd78647a62218b6b8c1abd9a2f7fd8adce1851daf21dc2d98e2a5d69b78a628ec07dcfa112c16a112a182e109b7c872b6e8a1e4a1547b49b81f7b
