@@ -1,11 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { getVideos } from "../../ApiService/ApiServices";
-import ReactPlayer from 'react-player';
+import videojs from 'video.js';
+import 'video.js/dist/video-js.css';
+import { getVideos } from '../../ApiService/ApiServices';
 
 const VideoPlayer: React.FC = () => {
   const [videos, setVideos] = useState<any[]>();
   const [networkSpeed, setNetworkSpeed] = useState<string | null>(null);
   const videoRef = useRef<HTMLVideoElement | null>(null);
+  const video = require("../../Assets/sample.mp4");
 
   useEffect(() => {
     const calculateNetworkSpeed = () => {
@@ -36,48 +38,55 @@ const VideoPlayer: React.FC = () => {
         setVideos(response);
         console.log(response);
       } catch (error) {
-        console.error("Error fetching videos:", error);
+        console.error('Error fetching videos:', error);
       }
     };
-
     fetchVideos();
+  }, []);
 
-    return () => {
-      // Cleanup logic if needed
-    };
+  useEffect(() => {
+    if (videoRef.current) {
+      const player = videojs(videoRef.current, {
+        controls: true,
+        width: '100%',
+        height: '100%',
+      });
+      return () => {
+        if (player) {
+          player.dispose();
+        }
+      };
+    }
   }, []);
 
   return (
-    <div className='video-screen-background'>
+    <div className="video-screen-background">
       <div className="background-video-container">
-        <ReactPlayer
-          url={require("../../Assets/sample.mp4")}
-          playing
-          loop
-          muted
-          width="100%"
-          height="100%"
-          className="background-video"
-        />
-        <div className="text-overlay learning-content" style={{ paddingTop: "500px" }}>
+        <video autoPlay loop muted className="background-video">
+          <source src={video} type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+        <div className="text-overlay learning-content">
           <h1>Welcome to Learning module</h1>
           <p>You can access all the learning content here</p>
         </div>
       </div>
-      <p className='video-heading'>Based on your Search History</p>
-      <p style={{ color: "white" }}>Network Speed {networkSpeed}</p>
-      <div className='row'>
+      <div className="row">
         {videos?.map((video, index: any) => (
           video?.map((item: any, index: number) => (
-            <div key={index} className='col-3' style={{ height: 250 }}>
+            <div key={index} className="col-3" style={{ height: 250 }}>
               <center>
-                <ReactPlayer
-                  url={`http://localhost:4000/stream/${item?.id}`}
+                <video
+                  ref={videoRef}
+                  className="video-js vjs-default-skin"
                   controls
                   width="100%"
                   height="100%"
-                />
-                <b style={{ padding: "10px", color: "white" }}>{video.title}</b>
+                  data-setup="{}"
+                >
+                  <source src={`http://localhost:4000/stream/${item?.id}`} type="video/mp4" />
+                </video>
+                <b style={{ padding: '10px', color: 'white' }}>{video.title}</b>
               </center>
             </div>
           ))
