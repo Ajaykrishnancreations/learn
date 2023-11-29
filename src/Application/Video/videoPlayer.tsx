@@ -47,9 +47,12 @@ const VideoPlayer: React.FC = () => {
   useEffect(() => {
     if (videoRef.current) {
       const player = videojs(videoRef.current, {
+        autoplay: false,
         controls: true,
-        width: '100%',
-        height: '100%',
+        responsive: true,
+        fluid: true,
+       
+
       });
       return () => {
         if (player) {
@@ -71,13 +74,36 @@ const VideoPlayer: React.FC = () => {
           <p>You can access all the learning content here</p>
         </div>
       </div>
-      <div className="row">
+      <div className="row" style={{ margin: 0 }}>
         {videos?.map((video, index: any) => (
           video?.map((item: any, index: number) => (
-            <div key={index} className="col-3" style={{ height: 250 }}>
+            <div key={index} className="col-3" style={{ height: 250, padding: 40 }}>
               <center>
+                {/* Use a separate ref for each video player */}
                 <video
-                  ref={videoRef}
+                  ref={(videoPlayerRef) => {
+                    if (videoPlayerRef) {
+                      const player = videojs(videoPlayerRef, {
+                        autoplay: false,
+                        controls: true,
+                        responsive: true,
+                        preload: 'auto',    // 'auto', 'metadata', or 'none'
+                        loop: false,
+                        fluid: true,
+                        poster: "https://static.vecteezy.com/system/resources/previews/002/221/017/original/cyber-technology-security-hacker-on-digital-screen-network-protection-background-design-illustration-free-vector.jpg",
+                        playbackRates: [0.5, 1, 1.5, 2],
+                       
+                      });
+
+                      // Dispose the player when the component unmounts
+                      return () => {
+                        if (player) {
+                          player.dispose();
+                        }
+                      };
+                    }
+                    return null;
+                  }}
                   className="video-js vjs-default-skin"
                   controls
                   width="100%"
