@@ -277,3 +277,12 @@ body {
   object-fit: contain;
   border-radius: 12px;
 }
+@import url('https://cdn.plyr.io/3.6.2/plyr.css');
+.vjs-quality-picker-button {
+  color: #fff;
+  background-color: #337ab7;
+  border: 1px solid #2e6da4;
+  border-radius: 4px;
+  padding: 8px;
+  cursor: pointer;
+}

@@ -12381,7 +12381,25 @@ __metadata:
   languageName: node
   linkType: hard
 
-"plyr@npm:^3.7.8":
+"plyr-react@npm:^5.3.0":
+  version: 5.3.0
+  resolution: "plyr-react@npm:5.3.0"
+  dependencies:
+    plyr: ^3.7.7
+    react-aptor: ^2.0.0
+  peerDependencies:
+    plyr: ^3.7.7
+    react: ">=16.8"
+  peerDependenciesMeta:
+    plyr:
+      optional: false
+    react:
+      optional: true
+  checksum: fcfd49c8b8448901c5a9cad0fc45ef3283b09ea746e39183ef783a21b23d4dce8735b9170a4a86fe7a0318750afb915c4e589cd59d27b7c6699743252b9ad13a
+  languageName: node
+  linkType: hard
+
+"plyr@npm:^3.7.7, plyr@npm:^3.7.8":
   version: 3.7.8
   resolution: "plyr@npm:3.7.8"
   dependencies:
@@ -13579,6 +13597,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-aptor@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "react-aptor@npm:2.0.0"
+  peerDependencies:
+    react: ">=16.8"
+  peerDependenciesMeta:
+    react:
+      optional: true
+  checksum: 8bad4074b6b1afa194c15e1a14e2ceb1bf1349fa21cb666ba195931f8db3f68c286456aa9f2db1cac9efd9a5c642eb84b5ace52d8576191ca0b5465ca822fd28
+  languageName: node
+  linkType: hard
+
 "react-datepicker@npm:^4.14.1":
   version: 4.21.0
   resolution: "react-datepicker@npm:4.21.0"
@@ -13951,6 +13981,7 @@ __metadata:
     moment: ^2.29.4
     notistack: ^3.0.1
     plyr: ^3.7.8
+    plyr-react: ^5.3.0
     react: ^18.2.0
     react-datepicker: ^4.14.1
     react-dom: ^18.2.0
