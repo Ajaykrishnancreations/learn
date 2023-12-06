@@ -42,7 +42,6 @@ const VideoPlayer: React.FC = () => {
     <div className="video-screen-background">
       <div className="row" style={{ margin: 0 }}>
         {videos?.map((video, index: any) => (
-          video?.map((item: any, index: number) => (
             <div key={index} className="col-3" style={{ height: 250, padding:10 }}>
               <center>
                 <Plyr
@@ -65,15 +64,21 @@ const VideoPlayer: React.FC = () => {
                   source={{
                     type: "video",
                     sources: [
+
                       {
-                        src: `http://localhost:4000/stream/${item?.id}`,
-                        type: "video/mp4",
-                        size: 720
-                      },
-                      {
-                        src: `http://localhost:4000/stream/${item?.id}`,
+                        src: `http://localhost:4000/stream/High%2F${video}`,
                         type: "video/mp4",
                         size: 1080
+                      },
+                      {
+                        src: `http://localhost:4000/stream/Medium%2F${video}`,
+                        type: "video/mp4",
+                        size: 480
+                      },
+                      {
+                        src: `http://localhost:4000/stream/Low%2F${video}`,
+                        type: "video/mp4",
+                        size: 360
                       },
                     ],
                   }}
@@ -81,7 +86,6 @@ const VideoPlayer: React.FC = () => {
                 <b style={{ padding: '10px', color: 'white' }}>{video.title}</b>
               </center>
             </div>
-          ))
         ))}
       </div>
     </div>
