@@ -1,12 +1,9 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Plyr from 'plyr-react';
-import videojs from 'video.js';
-import 'video.js/dist/video-js.css';
 import { getVideos } from '../../ApiService/ApiServices';
 
 const VideoPlayer: React.FC = () => {
   const [videos, setVideos] = useState<any[]>();
-  const videoRef = useRef<HTMLVideoElement | null>(null);
   const video = require("../../Assets/sample.mp4");
 
   useEffect(() => {
@@ -22,24 +19,18 @@ const VideoPlayer: React.FC = () => {
     fetchVideos();
   }, []);
 
-  useEffect(() => {
-    if (videoRef.current) {
-      const player = videojs(videoRef.current, {
-        autoplay: false,
-        controls: true,
-        responsive: true,
-        fluid: true,
-      });
-      return () => {
-        if (player) {
-          player.dispose();
-        }
-      };
-    }
-  }, []);
-
   return (
     <div className="video-screen-background">
+      <div className="background-video-container">
+        <video autoPlay loop muted className="background-video">
+          <source src={video} type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+        <div className="text-overlay learning-content">
+          <h1>Welcome to Learning module</h1>
+          <p>You can access all the learning content here</p>
+        </div>
+      </div>
       <div className="row" style={{ margin: 0 }}>
         {videos?.map((video, index: any) => (
             <div key={index} className="col-3" style={{ height: 250, padding:10 }}>
